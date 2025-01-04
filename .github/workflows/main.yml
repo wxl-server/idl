@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Cache Go modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cache/go-build
@@ -37,6 +37,14 @@ jobs:
         run: |
           git config --global user.name 'wxl'
           git config --global user.email '1715142548@qq.com'
+
+      - name: Reset to empty repository
+        run: |
+          git rm -rf .
+          rm -rf .
+
+      - name: Commit empty state
+        run: git commit --allow-empty -m 'Reset to empty repository'
 
       - name: Commit generated code
         run: |
