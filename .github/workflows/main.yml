@@ -38,8 +38,8 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.TOKEN }}  # 传递 GitHub Token
-          repository: qcq1/miner-core-gen  # 目标仓库名称，默认是当前仓库
-          branch: main  # 目标分支，默认是 master
+          repository:  # 目标仓库名称，默认是当前仓库
+          branch: gen-rpc  # 目标分支，默认是 master
           force: true  # 是否强制推送
           tags: false  # 是否推送标签
           directory: kitex_gen  # 推送前切换的目录，默认是当前目录
