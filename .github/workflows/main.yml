@@ -40,6 +40,4 @@ jobs:
           # Determines if force push is used
           force: true
           # Determines if --tags is used
-          directory:
-            - kitex_gen/*
-            - go.mod
+          directory: kitex_gen/*
