@@ -36,7 +36,7 @@ jobs:
 
       - name: Push to another repository
         env:
-          GITHUB_TOKEN: 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
+          PERSONAL_ACCESS_TOKEN: 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
         run: |
           git remote add target https://github.com/wxl-graduation-design/core-rpc.git
           git push --force target main
