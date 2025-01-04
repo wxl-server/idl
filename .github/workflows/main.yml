@@ -34,14 +34,7 @@ jobs:
           git add go.mod
           git commit -m 'Generate Kitex code'
 
-      - name: GitHub Push
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.TOKEN }}  # 传递 GitHub Token
-          repository:  # 目标仓库名称，默认是当前仓库
-          branch: gen  # 目标分支，默认是 master
-          force: true  # 是否强制推送
-          tags: false  # 是否推送标签
-          directory: | # 推送前切换的目录，默认是当前目录
-            kitex_gen/*
-            go.mod
+      - name: Push to another repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: git push --force origin gen
