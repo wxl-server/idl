@@ -1,4 +1,4 @@
-namespace go core
+namespace go miner_core
 
 include "base.thrift"
 
