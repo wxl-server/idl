@@ -41,7 +41,6 @@ jobs:
       - name: Reset to empty repository
         run: |
           git rm -rf .
-          rm -rf .
 
       - name: Commit empty state
         run: git commit --allow-empty -m 'Reset to empty repository'
