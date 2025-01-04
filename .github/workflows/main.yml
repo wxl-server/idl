@@ -37,7 +37,7 @@ jobs:
       - name: GitHub Push
         uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: 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
+          github_token: ${{ secrets.TOKEN }}  # 传递 GitHub Token
           repository: qcq1/miner-core-gen  # 目标仓库名称，默认是当前仓库
           branch: main  # 目标分支，默认是 master
           force: true  # 是否强制推送
