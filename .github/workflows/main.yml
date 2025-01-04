@@ -39,4 +39,4 @@ jobs:
           GITHUB_TOKEN: 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
         run: |
           git remote add target https://github.com/wxl-graduation-design/core-rpc.git
-          git push target main
+          git push --force target main
