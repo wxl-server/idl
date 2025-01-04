@@ -36,7 +36,7 @@ jobs:
 
       - name: Push to another repository
         env:
-          ACCESS_TOKEN: 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
+          PERSONAL_ACCESS_TOKEN: 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
         run: |
           git remote add target https://github.com/qcq1/miner-core-gen.git
           git push --force target main
