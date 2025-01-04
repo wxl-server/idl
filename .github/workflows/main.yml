@@ -42,4 +42,6 @@ jobs:
           branch: gen-rpc  # 目标分支，默认是 master
           force: true  # 是否强制推送
           tags: false  # 是否推送标签
-          directory: kitex_gen  # 推送前切换的目录，默认是当前目录
+          directory: | # 推送前切换的目录，默认是当前目录
+            kitex_gen/*
+            go.mod
