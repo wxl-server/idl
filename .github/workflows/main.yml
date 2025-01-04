@@ -3,7 +3,6 @@ on:
     branches: [ "*" ]
 
 jobs:
-  names:
   update:
     runs-on: ubuntu-latest
 
