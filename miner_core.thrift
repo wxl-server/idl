@@ -5,7 +5,6 @@ include "base.thrift"
 struct Item {
     1: i64 id
     2: string title
-    3: string description
     4: i64 stock
 }
 
