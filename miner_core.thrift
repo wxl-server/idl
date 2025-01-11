@@ -40,7 +40,7 @@ struct QueryJobListReq {
 }
 
 struct QueryJobListResp {
-    1: list<Job> job
+    1: list<Job> job_list
     2: i64 total
 }
 
