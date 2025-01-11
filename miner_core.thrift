@@ -44,6 +44,6 @@ struct QueryJobListResp {
     2: i64 total
 }
 
-service MinerCoreService{
+service MinerCore{
     QueryJobListResp QueryJobList(1: QueryJobListReq req)
 }
