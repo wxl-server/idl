@@ -1,25 +1,49 @@
 namespace go miner_core
 
-include "base.thrift"
+include "common.thrift"
 
-struct Item {
+enum JobColumn {
+    ID
+    NAME
+    DESCRIPTION
+    CREATED_BY
+    UPDATED_BY
+    CREATED_AT
+    UPDATED_AT
+    EXTRA
+}
+
+struct Job {
     1: i64 id
-    2: string title
-    3: i64 stock
+    2: string name
+    3: string description
+    4: i64 created_by
+    5: i64 updated_by
+    6: i64 created_at
+    7: i64 updated_at
+    8: string extra
 }
 
-struct GetItemReq {
-    1: required i64 id
+struct QueryJobListReq {
+    // 分页参数
+    1: required i64 page_num
+    2: required i64 page_size
+    3: optional JobColumn order_by
+    4: optional common.Order order
 
-    255: base.Base base
+    // 过滤条件
+    5: optional i64 id
+    6: optional i64 created_by
+    7: optional i64 created_at_start
+    8: optional i64 created_at_end
+
 }
 
-struct GetItemResp {
-    1: Item item
-
-    255: base.BaseResp baseResp
+struct QueryJobListResp {
+    1: list<Job> job
+    2: i64 total
 }
 
-service ItemService{
-    GetItemResp GetItem(1: GetItemReq req)
+service MinerCoreService{
+    QueryJobListResp QueryJobList(1: QueryJobListReq req)
 }

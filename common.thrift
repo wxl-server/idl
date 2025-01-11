@@ -1,0 +1,5 @@
+
+enum Order {
+    DESC
+    ASC
+}
