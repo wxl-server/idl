@@ -1,5 +1,5 @@
 
 enum Order {
-    DESC
-    ASC
+    desc
+    asc
 }

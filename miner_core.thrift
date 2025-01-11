@@ -3,14 +3,14 @@ namespace go miner_core
 include "common.thrift"
 
 enum JobColumn {
-    ID
-    NAME
-    DESCRIPTION
-    CREATED_BY
-    UPDATED_BY
-    CREATED_AT
-    UPDATED_AT
-    EXTRA
+    id
+    name
+    description
+    created_by
+    updated_by
+    created_at
+    updated_at
+    extra
 }
 
 struct Job {
