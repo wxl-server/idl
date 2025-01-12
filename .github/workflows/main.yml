@@ -3,6 +3,7 @@ on:
     branches: [ "*" ]
     paths:
       - 'rpc_idl/**'
+      - 'dto.thrift'
 
 jobs:
   update:
