@@ -1,7 +1,7 @@
 namespace go miner_core
 
-include "common.thrift"
-include "domain.thrift"
+include "../common.thrift"
+include "../domain.thrift"
 
 struct QueryJobListReq {
     // 分页参数
