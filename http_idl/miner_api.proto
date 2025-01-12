@@ -33,7 +33,7 @@ message QueryJobListData {
 
 service MinerApi {
   rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
-    option (api.get) = "/job/query/list";
+    option (api.post) = "/job/query/list";
   }
 }
 
