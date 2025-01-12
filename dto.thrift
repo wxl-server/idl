@@ -1,4 +1,9 @@
 
+enum Order {
+    desc
+    asc
+}
+
 enum JobColumn {
     id
     name

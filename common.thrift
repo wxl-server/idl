@@ -1,5 +1,0 @@
-
-enum Order {
-    desc
-    asc
-}

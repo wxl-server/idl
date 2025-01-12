@@ -1,14 +1,13 @@
 namespace go miner_api
 
-include "../common.thrift"
-include "../domain.thrift"
+include "../dto.thrift"
 
 struct QueryJobListReq {
     // 分页参数
     1: required i64 page_num (api.body="page_num");
     2: required i64 page_size (api.body="page_size");
-    3: optional domain.JobColumn order_by (api.body="order_by");
-    4: optional common.Order order (api.body="order");
+    3: optional dto.JobColumn order_by (api.body="order_by");
+    4: optional dto.Order order (api.body="order");
 
     // 过滤条件
     5: optional i64 id (api.body="id");
@@ -24,7 +23,7 @@ struct QueryJobListResp {
 }
 
 struct QueryJobListData {
-    1: required list<domain.Job> job_list
+    1: required list<dto.Job> job_list
     2: required i64 total
 }
 
