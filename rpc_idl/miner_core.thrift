@@ -1,13 +1,11 @@
 namespace go miner_core
 
-include "../dto.thrift"
-
 struct QueryJobListReq {
     // 分页参数
     1: required i64 page_num
     2: required i64 page_size
-    3: optional dto.JobColumn order_by
-    4: optional dto.Order order
+    3: optional JobColumn order_by
+    4: optional Order order
 
     // 过滤条件
     5: optional i64 id
@@ -18,10 +16,37 @@ struct QueryJobListReq {
 }
 
 struct QueryJobListResp {
-    1: required list<dto.Job> job_list
+    1: required list<Job> job_list
     2: required i64 total
 }
 
 service MinerCore{
     QueryJobListResp QueryJobList(1: QueryJobListReq req)
+}
+
+enum Order {
+    desc
+    asc
+}
+
+enum JobColumn {
+    id
+    name
+    description
+    created_by
+    updated_by
+    created_at
+    updated_at
+    extra
+}
+
+struct Job {
+    1: required i64 id
+    2: required string name
+    3: required string description
+    4: required i64 created_by
+    5: required i64 updated_by
+    6: required i64 created_at
+    7: required i64 updated_at
+    8: optional string extra
 }
