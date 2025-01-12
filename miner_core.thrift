@@ -1,34 +1,13 @@
 namespace go miner_core
 
 include "common.thrift"
-
-enum JobColumn {
-    id
-    name
-    description
-    created_by
-    updated_by
-    created_at
-    updated_at
-    extra
-}
-
-struct Job {
-    1: i64 id
-    2: string name
-    3: string description
-    4: i64 created_by
-    5: i64 updated_by
-    6: i64 created_at
-    7: i64 updated_at
-    8: string extra
-}
+include "domain.thrift"
 
 struct QueryJobListReq {
     // 分页参数
     1: required i64 page_num
     2: required i64 page_size
-    3: optional JobColumn order_by
+    3: optional domain.JobColumn order_by
     4: optional common.Order order
 
     // 过滤条件
@@ -40,8 +19,8 @@ struct QueryJobListReq {
 }
 
 struct QueryJobListResp {
-    1: list<Job> job_list
-    2: i64 total
+    1: required list<domain.Job> job_list
+    2: required i64 total
 }
 
 service MinerCore{
