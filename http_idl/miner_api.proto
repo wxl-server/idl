@@ -1,0 +1,66 @@
+// idl/hello/hello.proto
+syntax = "proto3";
+
+package miner_api;
+
+option go_package = "hertz/miner_api";
+
+import "api.proto";
+
+message QueryJobListReq {
+  // 分页参数
+  int64 page_num = 1[(api.body)="page_num"];
+  int64 page_size = 2[(api.body)="page_size"];
+  optional JobColumn order_by = 3[(api.body)="order_by"];
+  optional Order order = 4[(api.body)="order"];
+
+  // 过滤条件
+  optional int64 id = 5 [(api.body)="id"];
+  optional int64 created_by = 6 [(api.body)="created_by"];
+  optional int64 created_at_start = 7 [(api.body)="created_at_start"];
+  optional int64 created_at_end = 8 [(api.body)="created_at_end"];
+}
+
+message QueryJobListResp {
+  int64 code = 1;
+  string message = 2;
+  optional QueryJobListData data = 3;
+}
+
+message QueryJobListData {
+  repeated Job job_list = 1;
+  int64 total = 2;
+}
+
+service MinerApi {
+  rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
+    option (api.get) = "/job/query/list";
+  }
+}
+
+enum Order {
+    desc = 0;
+    asc = 1;
+}
+
+enum JobColumn {
+    id = 0;
+    name = 1;
+    description = 2;
+    created_by = 3;
+    updated_by = 4;
+    created_at = 5;
+    updated_at = 6;
+    extra = 7;
+}
+
+message Job {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  int64 created_by = 4;
+  int64 updated_by = 5;
+  int64 created_at = 6;
+  int64 updated_at = 7;
+  optional string extra = 8;
+}
