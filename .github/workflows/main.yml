@@ -1,8 +1,8 @@
 on:
   push:
     branches: [ "*" ]
-  paths:
-    - 'rpc_idl/**'
+    paths:
+      - 'rpc_idl/**'
 
 jobs:
   update:
