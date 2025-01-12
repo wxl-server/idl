@@ -1,4 +1,4 @@
-syntax = "proto3";
+syntax = "proto2";
 
 package miner_api;
 
@@ -8,8 +8,8 @@ import "api.proto";
 
 message QueryJobListReq {
   // 分页参数
-  int64 page_num = 1[(api.body)="page_num"];
-  int64 page_size = 2[(api.body)="page_size"];
+  required int64 page_num = 1[(api.body)="page_num"];
+  required int64 page_size = 2[(api.body)="page_size"];
   optional JobColumn order_by = 3[(api.body)="order_by"];
   optional Order order = 4[(api.body)="order"];
 
@@ -21,14 +21,14 @@ message QueryJobListReq {
 }
 
 message QueryJobListResp {
-  int64 code = 1;
-  string message = 2;
+  required int64 code = 1;
+  required string message = 2;
   optional QueryJobListData data = 3;
 }
 
 message QueryJobListData {
   repeated Job job_list = 1;
-  int64 total = 2;
+  required int64 total = 2;
 }
 
 service MinerApi {
@@ -54,12 +54,12 @@ enum JobColumn {
 }
 
 message Job {
-  int64 id = 1;
-  string name = 2;
-  string description = 3;
-  int64 created_by = 4;
-  int64 updated_by = 5;
-  int64 created_at = 6;
-  int64 updated_at = 7;
+  required int64 id = 1;
+  required string name = 2;
+  required string description = 3;
+  required int64 created_by = 4;
+  required int64 updated_by = 5;
+  required int64 created_at = 6;
+  required int64 updated_at = 7;
   optional string extra = 8;
 }
