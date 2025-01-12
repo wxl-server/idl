@@ -38,19 +38,19 @@ service MinerApi {
 }
 
 enum Order {
-    desc = 0;
-    asc = 1;
+    DESC = 0;
+    ASC = 1;
 }
 
 enum JobColumn {
-    id = 0;
-    name = 1;
-    description = 2;
-    created_by = 3;
-    updated_by = 4;
-    created_at = 5;
-    updated_at = 6;
-    extra = 7;
+    ID = 0;
+    NAME = 1;
+    DESCRIPTION = 2;
+    CREATED_BY = 3;
+    UPDATED_BY = 4;
+    CREATED_AT = 5;
+    UPDATED_AT = 6;
+    EXTRA = 7;
 }
 
 message Job {

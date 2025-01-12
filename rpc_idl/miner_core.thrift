@@ -25,19 +25,19 @@ service MinerCore{
 }
 
 enum Order {
-    desc
-    asc
+    DESC = 0;
+    ASC = 1;
 }
 
 enum JobColumn {
-    id
-    name
-    description
-    created_by
-    updated_by
-    created_at
-    updated_at
-    extra
+    ID = 0;
+    NAME = 1;
+    DESCRIPTION = 2;
+    CREATED_BY = 3;
+    UPDATED_BY = 4;
+    CREATED_AT = 5;
+    UPDATED_AT = 6;
+    EXTRA = 7;
 }
 
 struct Job {
