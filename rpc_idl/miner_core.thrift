@@ -2,16 +2,16 @@ namespace go miner_core
 
 struct QueryJobListReq {
     // 分页参数
-    1: required i64 page_num  (api.body = 'page_num')
-    2: required i64 page_size (api.body = 'page_size')
-    3: optional JobColumn order_by (api.body = 'order_by')
-    4: optional Order order (api.body = 'order')
+    1: required i64 page_num
+    2: required i64 page_size
+    3: optional JobColumn order_by
+    4: optional Order order
 
     // 过滤条件
-    5: optional i64 id (api.body = 'id')
-    6: optional i64 created_by (api.body = 'created_by')
-    7: optional i64 created_at_start (api.body = 'created_at_start')
-    8: optional i64 created_at_end (api.body = 'created_at_end')
+    5: optional i64 id
+    6: optional i64 created_by
+    7: optional i64 created_at_start
+    8: optional i64 created_at_end
 
 }
 
@@ -21,7 +21,7 @@ struct QueryJobListResp {
 }
 
 service MinerCore{
-    QueryJobListResp QueryJobList(1: QueryJobListReq req) (api.post = '/job/query/list')
+    QueryJobListResp QueryJobList(1: QueryJobListReq req)
 }
 
 enum Order {
