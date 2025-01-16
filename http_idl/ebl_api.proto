@@ -1,4 +1,4 @@
-syntax = "proto3";
+syntax = "proto2";
 
 package ebl_api;
 
@@ -7,33 +7,33 @@ option go_package = "ebl_api";
 import "api.proto";
 
 message SignUpReq {
-  string email = 1;
-  string password = 2;
+  required string email = 1;
+  required string password = 2;
 }
 
 message SignUpResp {
-  int64 code = 1;
-  string message = 2;
+  required int64 code = 1;
+  required string message = 2;
   optional SignUpData data = 3;
 }
 
 message SignUpData {
-    string id = 1;
+    required string id = 1;
 }
 
 message LoginReq {
-  string email = 1;
-  string password = 2;
+  required string email = 1;
+  required string password = 2;
 }
 
 message LoginResp {
-  int64 code = 1;
-  string message = 2;
+  required int64 code = 1;
+  required string message = 2;
   optional LoginData data = 3;
 }
 
 message LoginData{
-  string token = 1;
+  required string token = 1;
 }
 
 service EblApi {
