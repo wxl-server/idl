@@ -1,4 +1,4 @@
-namespace go user
+namespace go common_user
 
 struct SignUpReq {
     1: required string email
@@ -18,7 +18,7 @@ struct LoginReq {
     1: required string token
 }
 
-service User{
+service CommonUser{
     SignUpResp SignUp(1: SignUpReq req)
     LoginResp Login(1: LoginReq req)
 }
