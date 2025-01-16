@@ -24,7 +24,7 @@ jobs:
             else
               idls=$(git diff --name-only HEAD | grep -E 'rpc_idl/.*\.thrift$')
             fi
-            sh ./trigger.sh
+
             if [ -z "$idls" ]; then
               echo "No .thrift files have been modified."
               exit 0
