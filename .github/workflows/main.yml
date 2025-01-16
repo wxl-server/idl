@@ -18,7 +18,7 @@ jobs:
             echo "::set-output name=modified_files::$(git diff --name-only HEAD^ HEAD | grep -E 'rpc_idl/.*\.thrift$')"
 
         - name: Print a message
-          run: echo $modified_files
+          run: echo ${{ steps.get-modified-files.outputs.modified_files }}
 
         - name: Trigger Kitex Gen
           run: |
