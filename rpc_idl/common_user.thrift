@@ -9,12 +9,12 @@ struct SignUpResp {
     1: required i64 id
 }
 
-struct LoginResp {
+struct LoginReq {
     1: required string email
     2: required string password
 }
 
-struct LoginReq {
+struct LoginResp {
     1: required string token
 }
 
