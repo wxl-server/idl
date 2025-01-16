@@ -3,20 +3,30 @@ on:
     branches: [ "*" ]
     paths:
       - 'rpc_idl/**'
-      - 'dto.thrift'
 
 jobs:
   update:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Kitex Gen
-        run: |
-          branch=$(echo ${{ github.event.ref }} | awk -F '/' '{print $3}')
-          curl -L \
-          -X POST \
-          -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${{ secrets.TOKEN }}" \
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/qcq1/rpc_miner_core/dispatches \
-          -d '{"event_type":"idl_update","client_payload":{"repository":"${{ github.repository }}","ref":"'$branch'","commit_msg":"${{ github.event.head_commit.message }}"}}'
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Get modified IDL files
+          id: get-modified-files
+          run: |
+            echo "::set-output name=modified_files::$(git diff --name-only HEAD^ HEAD | grep -E 'rpc_idl/.*\.thrift$')"
+
+        - name: Print a message
+          run: echo $modified_files
+
+        - name: Trigger Kitex Gen
+          run: |
+            branch=$(echo ${{ github.event.ref }} | awk -F '/' '{print $3}')
+            curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/qcq1/rpc_miner_core/dispatches \
+            -d '{"event_type":"idl_update","client_payload":{"repository":"${{ github.repository }}","ref":"'$branch'","commit_msg":"${{ github.event.head_commit.message }}","modified_files":"'$modified_files'"}}'
