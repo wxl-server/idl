@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package ebl_api;
+
+option go_package = "ebl_api";
+
+import "api.proto";
+
+message SignUpReq {
+  string email = 1;
+  string password = 2;
+}
+
+message SignUpResp {
+  int64 code = 1;
+  string message = 2;
+  optional SignUpData data = 3;
+}
+
+message SignUpData {
+    string id = 1;
+}
+
+message LoginReq {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResp {
+  int64 code = 1;
+  string message = 2;
+  optional LoginData data = 3;
+}
+
+message LoginData{
+  string token = 1;
+}
+
+service EblApi {
+  rpc SignUp(SignUpReq) returns(SignUpResp) {
+    option (api.get) = "/user/signup";
+  }
+
+  rpc Login(LoginReq) returns(LoginResp) {
+    option (api.get) = "/user/login";
+  }
+}
