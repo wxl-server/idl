@@ -18,5 +18,10 @@ jobs:
             token=${{ secrets.TOKEN }}
             repo=${{ github.repository }}
             commit_msg=${{ github.event.head_commit.message }}
-            idls=$(git diff --name-only HEAD^ HEAD | grep -E 'rpc_idl/.*\.thrift$')
+            # 检查是否存在 HEAD^
+            if git rev-parse HEAD^ >/dev/null 2>&1; then
+              idls=$(git diff --name-only HEAD^ HEAD | grep -E 'rpc_idl/.*\.thrift$')
+            else
+              idls=$(git diff --name-only HEAD | grep -E 'rpc_idl/.*\.thrift$')
+            fi
             sh ./trigger.sh
