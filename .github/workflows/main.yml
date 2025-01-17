@@ -9,9 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: echo token
-        run: |
-          echo ${{ secrets.TOKEN }}
       - name: Trigger Kitex Gen
         run: |
           branch=$(echo ${{ github.event.ref }} | awk -F '/' '{print $3}')
