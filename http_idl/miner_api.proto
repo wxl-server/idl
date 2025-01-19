@@ -6,6 +6,21 @@ option go_package = "miner_api";
 
 import "api.proto";
 
+message SignUpReq {
+  required string email = 1[(api.body)="email"];
+  required string password = 2[(api.body)="password"];
+}
+
+message SignUpResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional SignUpData data = 3;
+}
+
+message SignUpData {
+  required int64 id = 1;
+}
+
 message QueryJobListReq {
   // 分页参数
   required int64 page_num = 1[(api.body)="page_num"];
@@ -32,6 +47,9 @@ message QueryJobListData {
 }
 
 service MinerApi {
+  rpc SignUp(SignUpReq) returns(SignUpResp) {
+    option (api.post) = "/user/signup";
+  }
   rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
     option (api.post) = "/job/query/list";
   }
