@@ -18,7 +18,17 @@ struct LoginResp {
     1: required string token
 }
 
+struct UpdatePasswordReq {
+    1: required string email
+    2: required string old_password
+    3: required string new_password
+}
+
+struct UpdatePasswordResp {
+}
+
 service CommonUser{
     SignUpResp SignUp(1: SignUpReq req)
+    UpdatePasswordResp UpdatePassword(1: UpdatePasswordReq req)
     LoginResp Login(1: LoginReq req)
 }
