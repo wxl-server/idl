@@ -21,6 +21,17 @@ message SignUpData {
   required int64 id = 1;
 }
 
+message UpdatePasswordReq {
+  required string email = 1[(api.body)="email"];
+  required string old_password = 2[(api.body)="old_password"];
+  required string password = 3[(api.body)="password"];
+}
+
+message UpdatePasswordResp {
+  required int64 code = 1;
+  required string message = 2;
+}
+
 message QueryJobListReq {
   // 分页参数
   required int64 page_num = 1[(api.body)="page_num"];
@@ -49,6 +60,9 @@ message QueryJobListData {
 service MinerApi {
   rpc SignUp(SignUpReq) returns(SignUpResp) {
     option (api.post) = "/user/signup";
+  }
+  rpc UpdatePassword(UpdatePasswordReq) returns(UpdatePasswordResp) {
+    option (api.post) = "/user/password/update";
   }
   rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
     option (api.post) = "/job/query/list";
