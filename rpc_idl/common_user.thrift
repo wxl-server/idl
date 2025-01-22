@@ -21,7 +21,7 @@ struct LoginResp {
 struct UpdatePasswordReq {
     1: required string email
     2: required string old_password
-    3: required string new_password
+    3: required string password
 }
 
 struct UpdatePasswordResp {
