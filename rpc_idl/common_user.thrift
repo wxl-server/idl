@@ -28,8 +28,16 @@ struct UpdatePasswordResp {
 
 }
 
+struct ValidateTokenReq {
+    1: required string token
+}
+
+struct ValidateTokenResp {
+}
+
 service CommonUser{
     SignUpResp SignUp(1: SignUpReq req)
     UpdatePasswordResp UpdatePassword(1: UpdatePasswordReq req)
     LoginResp Login(1: LoginReq req)
+    ValidateTokenResp ValidateToken(1: ValidateTokenReq req)
 }
