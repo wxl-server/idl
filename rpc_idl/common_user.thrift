@@ -33,6 +33,7 @@ struct ValidateTokenReq {
 }
 
 struct ValidateTokenResp {
+    1: required map<string,string> claims
 }
 
 service CommonUser{
