@@ -12,7 +12,7 @@ struct CreateCompanyResp {
 }
 
 service FabricEbl{
-    CreateCompanyResp SignUp(1: CreateCompanyReq req)
+    CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
 }
 
 enum CompanyType {
