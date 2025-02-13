@@ -10,6 +10,7 @@ struct CreateCompanyReq {
 }
 
 struct CreateCompanyResp {
+    1: required i64 id
 }
 
 service FabricEbl{

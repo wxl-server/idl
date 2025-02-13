@@ -51,7 +51,7 @@ message CreateCompanyResp {
 }
 
 message CreateCompanyData{
-  required string id = 1;
+  required int64 id = 1;
 }
 
 service EblApi {
