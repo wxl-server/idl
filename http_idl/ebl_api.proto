@@ -42,6 +42,7 @@ message CreateCompanyReq {
   required CompanyType company_type = 3[(api.body)="company_type"];
   required string admin_email = 4[(api.body)="admin_email"];
   required string admin_password = 5[(api.body)="admin_password"];
+  required string admin_name = 6[(api.body)="admin_name"];
 }
 
 message CreateCompanyResp {
