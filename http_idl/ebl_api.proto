@@ -36,6 +36,25 @@ message LoginData{
   required string token = 1;
 }
 
+message CreateCompanyReq {
+  required string company_code = 1[(api.body)="company_code"];
+  required string company_name = 2[(api.body)="company_name"];
+  required CompanyType company_type = 3[(api.body)="company_type"];
+  required string admin_email = 4[(api.body)="admin_email"];
+  required string admin_password = 5[(api.body)="admin_password"];
+  required string admin_name = 6[(api.body)="admin_name"];
+}
+
+message CreateCompanyResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateCompanyData data = 3;
+}
+
+message CreateCompanyData{
+  required int64 id = 1;
+}
+
 service EblApi {
   rpc SignUp(SignUpReq) returns(SignUpResp) {
     option (api.post) = "/user/signup";
@@ -44,4 +63,13 @@ service EblApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
   }
+
+  rpc CreateCompany(CreateCompanyReq) returns(CreateCompanyResp) {
+    option (api.post) = "/company/create";
+  }
+}
+enum CompanyType {
+  Ship = 1;
+  Bank = 2;
+  Common = 3;
 }
