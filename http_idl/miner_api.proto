@@ -40,7 +40,7 @@ message QueryJobListReq {
   optional Order order = 4[(api.body)="order"];
 
   // 过滤条件
-  optional int64 id = 5 [(api.body)="id"];
+  optional int64 name = 5 [(api.body)="name"];
   optional int64 created_by = 6 [(api.body)="created_by"];
   optional int64 created_at_start = 7 [(api.body)="created_at_start"];
   optional int64 created_at_end = 8 [(api.body)="created_at_end"];
