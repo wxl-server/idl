@@ -44,13 +44,60 @@ struct GetCompanyAllListResp {
     1: required list<Company> company_list
 }
 
+struct CreateEblReq {
+    1: required Ebl ebl
+}
 
+struct CreateEblResp {
+    1: required i64 id
+}
+
+struct Ebl {
+    1: required string eblNo
+    2: required string originCompanyID
+    3: required string originCompanyName
+    4: required string shipperCompanyID
+    5: required string shipperCompanyName
+    6: required string consigneeCompanyID
+    7: required string consigneeCompanyName
+    8: required string notifyPartyCompanyID
+    9: required string notifyPartyCompanyName
+    10: required string placeOfReceipt
+    11: required string oceanVessel
+    12: required string portOfLoading
+    13: required string portOfDescharge
+    14: required string placeOfDestination
+    15: required string placeOfDelivery
+    16: required string shippingMarkes
+    17: required double quantityOfPackages
+    18: required string kindOfPackagesGW
+    19: required string kindOfPackagesM
+    20: required string descriptionOfGoods
+    21: required double grossWeight
+    22: required double measurement
+    23: required string freightAndCharges
+    24: required string placeOfIssue
+    25: required i64 dateOfIssue
+    26: required string deliveryAgent
+    27: required i64 shippedOnBoard
+    28: required i64 numOfEBL
+    29: required i64 dateOfIssueDeadline
+    30: required string status
+    31: required string file
+    32: required list<string> contractFiles
+    33: required list<string> invoiceFiles
+    34: required string transferCompanyID
+    35: required string transferCompanyName
+    36: required i64 companyID
+    37: required string companyName
+}
 
 service FabricEbl{
     CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
     LoginResp Login(1: LoginReq req)
     GetUserInfoResp GetUserInfo(1: GetUserInfoReq req)
     GetCompanyAllListResp GetCompanyAllList(1: GetCompanyAllListReq req)
+    CreateEblResp CreateEbl(1: CreateEblReq req)
 }
 
 struct Company {

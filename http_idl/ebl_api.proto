@@ -74,6 +74,59 @@ message GetCompanyAllListData{
   repeated Company company_list = 1;
 }
 
+message CreateEblReq {
+  required Ebl ebl = 1;
+}
+
+message Ebl {
+  required string eblNo = 1;
+  required string originCompanyID = 2;
+  required string originCompanyName = 3;
+  required string shipperCompanyID = 4;
+  required string shipperCompanyName = 5;
+  required string consigneeCompanyID = 6;
+  required string consigneeCompanyName = 7;
+  required string notifyPartyCompanyID = 8;
+  required string notifyPartyCompanyName = 9;
+  required string placeOfReceipt = 10;
+  required string oceanVessel = 11;
+  required string portOfLoading = 12;
+  required string portOfDescharge = 13;
+  required string placeOfDestination = 14;
+  required string placeOfDelivery = 15;
+  required string shippingMarkes = 16;
+  required double quantityOfPackages = 17;
+  required string kindOfPackagesGW = 18;
+  required string kindOfPackagesM = 19;
+  required string descriptionOfGoods = 20;
+  required double grossWeight = 21;
+  required double measurement = 22;
+  required string freightAndCharges = 23;
+  required string placeOfIssue = 24;
+  required int64 dateOfIssue = 25;
+  required string deliveryAgent = 26;
+  required int64 shippedOnBoard = 27;
+  required int64 numOfEBL = 28;
+  required int64 dateOfIssueDeadline = 29;
+  required string status = 30;
+  required string file = 31;
+  repeated string contractFiles = 32;
+  repeated string invoiceFiles = 33;
+  required string transferCompanyID = 34;
+  required string transferCompanyName = 35;
+  required int64 companyID = 36;
+  required string companyName = 37;
+}
+
+message CreateEblResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateEblData data = 3;
+}
+
+message CreateEblData{
+  required int64 id = 1;
+}
 
 service EblApi {
 
@@ -91,6 +144,10 @@ service EblApi {
 
   rpc GetCompanyAllList(GetCompanyAllListReq) returns(GetCompanyAllListResp) {
     option (api.get) = "/company/all";
+  }
+
+  rpc CreateEbl(CreateEblReq) returns(CreateEblResp) {
+    option (api.post) = "/ebl/create";
   }
 }
 enum CompanyType {
