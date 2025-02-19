@@ -26,11 +26,11 @@ struct GetUserInfoReq {
 }
 
 struct GetUserInfoResp {
-    1: required string user_id
+    1: required i64 user_id
     2: required string user_email
     3: required string user_name
     4: required UserType user_type
-    5: required string company_id
+    5: required i64 company_id
     6: required string company_name
     7: required string company_code
     8: required CompanyType company_type

@@ -55,7 +55,7 @@ message GetUserInfoData{
   required string user_email = 2;
   required string user_name = 3;
   required UserType user_type = 4;
-  required string company_id = 5;
+  required int64 company_id = 5;
   required string company_name = 6;
   required string company_code = 7;
   required CompanyType company_type = 8;
