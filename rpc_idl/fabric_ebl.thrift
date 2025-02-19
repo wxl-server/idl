@@ -13,8 +13,18 @@ struct CreateCompanyResp {
     1: required i64 id
 }
 
+struct LoginReq {
+    1: required string email
+    2: required string password
+}
+
+struct LoginResp {
+    1: required string token
+}
+
 service FabricEbl{
     CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
+    LoginResp Login(1: LoginReq req)
 }
 
 enum CompanyType {
