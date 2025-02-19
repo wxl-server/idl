@@ -37,10 +37,10 @@ struct GetUserInfoResp {
     8: required CompanyType company_type
 }
 
-struct GetCompanyAllListResp {
+struct GetCompanyAllListReq {
 }
 
-struct GetCompanyAllListReq {
+struct GetCompanyAllListResp {
     1: required list<Company> company_type
 }
 
