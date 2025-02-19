@@ -23,6 +23,7 @@ struct LoginResp {
 }
 
 struct GetUserInfoReq {
+    1: required string token
 }
 
 struct GetUserInfoResp {
