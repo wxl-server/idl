@@ -37,12 +37,28 @@ struct GetUserInfoResp {
     8: required CompanyType company_type
 }
 
+struct GetCompanyAllListResp {
+}
+
+struct GetCompanyAllListReq {
+    1: required list<Company> company_type
+}
+
+
+
 service FabricEbl{
     CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
     LoginResp Login(1: LoginReq req)
     GetUserInfoResp GetUserInfo(1: GetUserInfoReq req)
+    GetCompanyAllListResp GetCompanyAllList(1: GetCompanyAllListReq req)
 }
 
+struct Company {
+    1: required i64 id
+    2: required string company_code
+    3: required string company_name
+    4: required CompanyType company_type
+}
 enum CompanyType {
     Ship = 1;
     Bank = 2;

@@ -61,6 +61,20 @@ message GetUserInfoData{
   required CompanyType company_type = 8;
 }
 
+message GetCompanyAllListReq {
+}
+
+message GetCompanyAllListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional GetCompanyAllListData data = 3;
+}
+
+message GetCompanyAllListData{
+  repeated Company company_list = 1;
+}
+
+
 service EblApi {
 
   rpc Login(LoginReq) returns(LoginResp) {
@@ -74,6 +88,10 @@ service EblApi {
   rpc GetUserInfo(GetUserInfoReq) returns(GetUserInfoResp) {
     option (api.get) = "/user/info";
   }
+
+  rpc GetCompanyAllList(GetCompanyAllListReq) returns(GetCompanyAllListResp) {
+    option (api.get) = "/company/all";
+  }
 }
 enum CompanyType {
   Ship = 1;
@@ -84,4 +102,11 @@ enum CompanyType {
 enum UserType {
   Admin = 1;
   User = 2;
+}
+
+message Company {
+  required int64 id = 1;
+  required string company_code = 2;
+  required string company_name = 3;
+  required CompanyType company_type = 4;
 }
