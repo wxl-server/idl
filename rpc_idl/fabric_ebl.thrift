@@ -41,7 +41,7 @@ struct GetCompanyAllListReq {
 }
 
 struct GetCompanyAllListResp {
-    1: required list<Company> company_type
+    1: required list<Company> company_list
 }
 
 
