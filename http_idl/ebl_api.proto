@@ -6,20 +6,6 @@ option go_package = "ebl_api";
 
 import "api.proto";
 
-message SignUpReq {
-  required string email = 1[(api.body)="email"];
-  required string password = 2[(api.body)="password"];
-}
-
-message SignUpResp {
-  required int64 code = 1;
-  required string message = 2;
-  optional SignUpData data = 3;
-}
-
-message SignUpData {
-    required int64 id = 1;
-}
 
 message LoginReq {
   required string email = 1[(api.body)="email"];
@@ -55,10 +41,27 @@ message CreateCompanyData{
   required int64 id = 1;
 }
 
+message GetUserInfoReq {
+}
+
+message GetUserInfoResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional GetUserInfoData data = 3;
+}
+
+message GetUserInfoData{
+  required int64 user_id = 1;
+  required string user_email = 2;
+  required string user_name = 3;
+  required UserType user_type = 4;
+  required string company_id = 5;
+  required string company_name = 6;
+  required string company_code = 7;
+  required CompanyType company_type = 8;
+}
+
 service EblApi {
-  rpc SignUp(SignUpReq) returns(SignUpResp) {
-    option (api.post) = "/user/signup";
-  }
 
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
@@ -67,9 +70,18 @@ service EblApi {
   rpc CreateCompany(CreateCompanyReq) returns(CreateCompanyResp) {
     option (api.post) = "/company/create";
   }
+
+  rpc GetUserInfo(GetUserInfoReq) returns(GetUserInfoResp) {
+    option (api.get) = "/user/info";
+  }
 }
 enum CompanyType {
   Ship = 1;
   Bank = 2;
   Common = 3;
+}
+
+enum UserType {
+  Admin = 1;
+  User = 2;
 }
