@@ -46,6 +46,7 @@ struct GetCompanyAllListResp {
 
 struct CreateEblReq {
     1: required Ebl ebl
+    2: required string token
 }
 
 struct CreateEblResp {
