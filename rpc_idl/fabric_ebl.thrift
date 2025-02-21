@@ -93,12 +93,26 @@ struct Ebl {
     37: required string companyName
 }
 
+struct QueryAllEblListReq {
+    1: required string token            // 身份验证Token
+    2: optional i64 pageSize         // 可选的分页大小，默认值是10
+    3: optional string bookmark        // 分页标记，用于后续请求获取更多数据
+}
+
+struct QueryAllEblListResp {
+    1: required list<Ebl> eblList       // 返回的 Ebl 列表
+    2: required i64 fetchedRecordsCount      // 总记录数，便于计算分页
+    3: required string bookmark         // 返回的分页标记，用于继续分页查询
+}
+
+
 service FabricEbl{
     CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
     LoginResp Login(1: LoginReq req)
     GetUserInfoResp GetUserInfo(1: GetUserInfoReq req)
     GetCompanyAllListResp GetCompanyAllList(1: GetCompanyAllListReq req)
     CreateEblResp CreateEbl(1: CreateEblReq req)
+    QueryAllEblListResp QueryAllEblList(1: QueryAllEblListReq req)
 }
 
 struct Company {
