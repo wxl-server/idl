@@ -105,6 +105,24 @@ message QueryAllEblListData{
   required string bookmark = 3;
 }
 
+message QueryEblListReq {
+  required int64 page_size = 1[(api.body)="page_size"];
+  required string bookmark = 2[(api.body)="bookmark"];
+  required Ebl ebl = 3[(api.body)="ebl"];
+}
+
+message QueryEblListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryEblListData data = 3;
+}
+
+message QueryEblListData{
+  repeated Ebl ebl_list = 1;
+  required int64 fetchedRecordsCount = 2;
+  required string bookmark = 3;
+}
+
 service EblApi {
 
   rpc Login(LoginReq) returns(LoginResp) {
@@ -129,6 +147,10 @@ service EblApi {
 
   rpc QueryAllEblList(QueryAllEblListReq) returns(QueryAllEblListResp) {
     option (api.post) = "/ebl/all";
+  }
+
+  rpc QueryEblList(QueryEblListReq) returns(QueryEblListResp) {
+    option (api.post) = "/ebl/query";
   }
 }
 enum CompanyType {
