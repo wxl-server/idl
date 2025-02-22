@@ -136,7 +136,7 @@ service FabricEbl{
     CreateEblResp CreateEbl(1: CreateEblReq req)
     QueryAllEblListResp QueryAllEblList(1: QueryAllEblListReq req)
     QueryEblListResp QueryEblList(1: QueryEblListReq req)
-    OperateEblResp SubmitEbl(1: OperateEblReq req)
+    OperateEblResp OperateEbl(1: OperateEblReq req)
 }
 
 struct Company {
