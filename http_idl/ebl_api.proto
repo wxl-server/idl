@@ -139,6 +139,19 @@ message OperateEblData{
   required int64 id = 1;
 }
 
+message UploadSealReq {
+}
+
+message UploadSealResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional UploadSealData data = 3;
+}
+
+message UploadSealData{
+  required int64 id = 1;
+}
+
 service EblApi {
 
   rpc Login(LoginReq) returns(LoginResp) {
@@ -171,6 +184,10 @@ service EblApi {
 
   rpc OperateEbl(OperateEblReq) returns(OperateEblResp) {
     option (api.post) = "/ebl/operate";
+  }
+
+  rpc UploadSeal(UploadSealReq) returns(UploadSealResp) {
+    option (api.post) = "/company/seal/upload";
   }
 }
 enum CompanyType {

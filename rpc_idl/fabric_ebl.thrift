@@ -128,6 +128,16 @@ struct OperateEblResp {
     1: required i64 id
 }
 
+struct UploadSealReq {
+    1: required string token            // 身份验证Token
+    2: required string eblNo            // Ebl ID
+    3: required string seal             // ��章文件
+}
+
+struct UploadSealResp {
+    1: required i64 id
+}
+
 service FabricEbl{
     CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
     LoginResp Login(1: LoginReq req)
