@@ -120,7 +120,7 @@ struct QueryEblListResp {
 
 struct SubmitEblReq {
     1: required string token            // 身份验证Token
-    2: required i64 eblNo            // Ebl ID
+    2: required string eblNo            // Ebl ID
 }
 
 struct SubmitEblResp {
