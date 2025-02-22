@@ -125,6 +125,7 @@ message QueryEblListData{
 
 message SubmitEblReq {
   required string eblNo = 1[(api.body)="eblNo"];
+  required string type = 2[(api.body)="type"];
 }
 
 message SubmitEblResp {
