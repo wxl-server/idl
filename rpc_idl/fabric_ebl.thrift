@@ -121,6 +121,7 @@ struct QueryEblListResp {
 struct SubmitEblReq {
     1: required string token            // 身份验证Token
     2: required string eblNo            // Ebl ID
+    3: required string type           // Ebl 状态转换类型 1 submitEbl 2 approveEbl 3 rejectEbl
 }
 
 struct SubmitEblResp {
