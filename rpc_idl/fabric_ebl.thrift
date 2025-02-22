@@ -130,8 +130,7 @@ struct OperateEblResp {
 
 struct UploadSealReq {
     1: required string token            // 身份验证Token
-    2: required string eblNo            // Ebl ID
-    3: required string seal             // ��章文件
+    2: required list<byte> seal         // Seal
 }
 
 struct UploadSealResp {
@@ -147,6 +146,7 @@ service FabricEbl{
     QueryAllEblListResp QueryAllEblList(1: QueryAllEblListReq req)
     QueryEblListResp QueryEblList(1: QueryEblListReq req)
     OperateEblResp OperateEbl(1: OperateEblReq req)
+    UploadSealResp UploadSeal(1: UploadSealReq req)
 }
 
 struct Company {
