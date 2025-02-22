@@ -121,7 +121,7 @@ struct QueryEblListResp {
 struct OperateEblReq {
     1: required string token            // 身份验证Token
     2: required string eblNo            // Ebl ID
-    3: required string type           // Ebl 状态转换类型 1 submitEbl 2 approveEbl 3 rejectEbl
+    3: required OperationType type           // Ebl 状态转换类型 1 submitEbl 2 approveEbl 3 rejectEbl
 }
 
 struct OperateEblResp {
@@ -145,6 +145,19 @@ struct Company {
     3: required string company_name
     4: required CompanyType company_type
 }
+
+enum OperationType {
+  Submit = 1;
+  Approve = 2;
+  Reject = 3;
+  Retreat = 4;
+  Seal = 5;
+  Issue = 6;
+  Accept = 7;
+  Transfer = 8;
+  Redeem = 9;
+}
+
 enum CompanyType {
     Ship = 1;
     Bank = 2;

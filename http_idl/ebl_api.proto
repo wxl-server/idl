@@ -125,7 +125,8 @@ message QueryEblListData{
 
 message OperateEblReq {
   required string eblNo = 1[(api.body)="eblNo"];
-  required string type = 2[(api.body)="type"];
+  required OperationType type = 2[(api.body)="type"];
+  optional string transferCompanyID = 3[(api.body)="transferCompanyID"];
 }
 
 message OperateEblResp {
@@ -181,6 +182,18 @@ enum CompanyType {
 enum UserType {
   Admin = 1;
   User = 2;
+}
+
+enum OperationType {
+  Submit = 1;
+  Approve = 2;
+  Reject = 3;
+  Retreat = 4;
+  Seal = 5;
+  Issue = 6;
+  Accept = 7;
+  Transfer = 8;
+  Redeem = 9;
 }
 
 message Company {
