@@ -118,13 +118,13 @@ struct QueryEblListResp {
     3: required string bookmark         // 返回的分页标记，用于继续分页查询
 }
 
-struct SubmitEblReq {
+struct OperateEblReq {
     1: required string token            // 身份验证Token
     2: required string eblNo            // Ebl ID
     3: required string type           // Ebl 状态转换类型 1 submitEbl 2 approveEbl 3 rejectEbl
 }
 
-struct SubmitEblResp {
+struct OperateEblResp {
     1: required i64 id
 }
 
@@ -136,7 +136,7 @@ service FabricEbl{
     CreateEblResp CreateEbl(1: CreateEblReq req)
     QueryAllEblListResp QueryAllEblList(1: QueryAllEblListReq req)
     QueryEblListResp QueryEblList(1: QueryEblListReq req)
-    SubmitEblResp SubmitEbl(1: SubmitEblReq req)
+    OperateEblResp SubmitEbl(1: OperateEblReq req)
 }
 
 struct Company {

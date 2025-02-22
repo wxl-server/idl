@@ -123,18 +123,18 @@ message QueryEblListData{
   required string bookmark = 3;
 }
 
-message SubmitEblReq {
+message OperateEblReq {
   required string eblNo = 1[(api.body)="eblNo"];
   required string type = 2[(api.body)="type"];
 }
 
-message SubmitEblResp {
+message OperateEblResp {
   required int64 code = 1;
   required string message = 2;
-  optional SubmitEblData data = 3;
+  optional OperateEblData data = 3;
 }
 
-message SubmitEblData{
+message OperateEblData{
   required int64 id = 1;
 }
 
@@ -168,8 +168,8 @@ service EblApi {
     option (api.post) = "/ebl/query";
   }
 
-  rpc SubmitEbl(SubmitEblReq) returns(SubmitEblResp) {
-    option (api.post) = "/ebl/submit";
+  rpc OperateEbl(OperateEblReq) returns(OperateEblResp) {
+    option (api.post) = "/ebl/operate";
   }
 }
 enum CompanyType {
