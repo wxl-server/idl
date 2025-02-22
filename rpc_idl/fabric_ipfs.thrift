@@ -1,4 +1,4 @@
-namespace go fabric_ebl
+namespace go fabric_ipfs
 
 struct CreateCreateEblDocxDocxReq {
     1: required CreateEblDocx ebl
