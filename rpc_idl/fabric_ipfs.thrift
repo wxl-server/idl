@@ -1,10 +1,10 @@
 namespace go fabric_ipfs
 
-struct CreateCreateEblDocxDocxReq {
+struct CreateEblDocxReq {
     1: required CreateEblDocx ebl
 }
 
-struct CreateCreateEblDocxDocxResp {
+struct CreateEblDocxResp {
     1: required string file_hash
 }
 
@@ -50,5 +50,5 @@ struct CreateEblDocx {
 
 
 service FabricIpfs{
-    CreateCreateEblDocxDocxResp CreateCreateEblDocxDocx(1: CreateCreateEblDocxDocxReq req)
+    CreateEblDocxResp CreateEblDocx(1: CreateEblDocxReq req)
 }
