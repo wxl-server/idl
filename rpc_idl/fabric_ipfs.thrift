@@ -49,6 +49,6 @@ struct CreateEblDocx {
 }
 
 
-service FabricCreateEblDocx{
+service FabricIpfs{
     CreateCreateEblDocxDocxResp CreateCreateEblDocxDocx(1: CreateCreateEblDocxDocxReq req)
 }
