@@ -257,6 +257,6 @@ message Ebl {
   repeated string invoiceFiles = 33;
   required string transferCompanyID = 34;
   required string transferCompanyName = 35;
-  required int64 companyID = 36;
+  required string companyID = 36;
   required string companyName = 37;
 }

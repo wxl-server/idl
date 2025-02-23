@@ -89,9 +89,10 @@ struct Ebl {
     33: required list<string> invoiceFiles
     34: required string transferCompanyID
     35: required string transferCompanyName
-    36: required i64 companyID
+    36: required string companyID
     37: required string companyName
 }
+
 struct EblFilter {
     1: required string eblNo
     2: required string originCompanyID
@@ -120,7 +121,7 @@ struct EblFilter {
     25: required i64 dateOfIssueDeadline
     26: required string status
     27: required string transferCompanyID
-    28: required i64 companyID
+    28: required string companyID
 }
 struct QueryAllEblListReq {
     1: required string token            // 身份验证Token
