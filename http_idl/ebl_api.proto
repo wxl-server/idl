@@ -249,7 +249,7 @@ message Ebl {
   required int64 dateOfIssue = 25;
   required string deliveryAgent = 26;
   required int64 shippedOnBoard = 27;
-  required int64 numOfEBL = 28;
+  required int64 numOfEbl = 28;
   required int64 dateOfIssueDeadline = 29;
   required string status = 30;
   required string file = 31;

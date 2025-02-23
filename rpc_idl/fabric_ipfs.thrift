@@ -36,7 +36,7 @@ struct CreateEblDocx {
     25: required i64 dateOfIssue
     26: required string deliveryAgent
     27: required i64 shippedOnBoard
-    28: required i64 numOfEBL
+    28: required i64 numOfEbl
     29: required i64 dateOfIssueDeadline
     30: required string status
     31: required string file
