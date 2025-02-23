@@ -92,7 +92,36 @@ struct Ebl {
     36: required i64 companyID
     37: required string companyName
 }
-
+struct EblFilter {
+    1: required string eblNo
+    2: required string originCompanyID
+    3: required string shipperCompanyID
+    4: required string consigneeCompanyID
+    5: required string notifyPartyCompanyID
+    6: required string placeOfReceipt
+    7: required string oceanVessel
+    8: required string portOfLoading
+    9: required string portOfDescharge
+    10: required string placeOfDestination
+    11: required string placeOfDelivery
+    12: required string shippingMarkes
+    13: required double quantityOfPackages
+    14: required string kindOfPackagesGW
+    15: required string kindOfPackagesM
+    16: required string descriptionOfGoods
+    17: required double grossWeight
+    18: required double measurement
+    19: required string freightAndCharges
+    20: required string placeOfIssue
+    21: required i64 dateOfIssue
+    22: required string deliveryAgent
+    23: required i64 shippedOnBoard
+    24: required i64 numOfEBL
+    25: required i64 dateOfIssueDeadline
+    26: required string status
+    27: required string transferCompanyID
+    28: required i64 companyID
+}
 struct QueryAllEblListReq {
     1: required string token            // 身份验证Token
     2: optional i64 pageSize         // 可选的分页大小，默认值是10
@@ -109,7 +138,7 @@ struct QueryEblListReq {
     1: required string token            // 身份验证Token
     2: optional i64 pageSize         // 可选的分页大小，默认值是10
     3: optional string bookmark        // 分页标记，用于后续请求获取更多数据
-    4: required Ebl eblFilter         // 过滤条件
+    4: required EblFilter eblFilter         // 过滤条件
 }
 
 struct QueryEblListResp {
