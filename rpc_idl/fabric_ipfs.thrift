@@ -44,7 +44,7 @@ struct CreateEblDocx {
     33: required list<string> invoiceFiles
     34: required string transferCompanyID
     35: required string transferCompanyName
-    36: required i64 companyID
+    36: required string companyID
     37: required string companyName
 }
 
