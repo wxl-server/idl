@@ -81,7 +81,7 @@ struct Ebl {
     25: required i64 dateOfIssue
     26: required string deliveryAgent
     27: required i64 shippedOnBoard
-    28: required i64 numOfEBL
+    28: required i64 numOfEbl
     29: required i64 dateOfIssueDeadline
     30: required string status
     31: required string file
@@ -117,7 +117,7 @@ struct EblFilter {
     21: required i64 dateOfIssue
     22: required string deliveryAgent
     23: required i64 shippedOnBoard
-    24: required i64 numOfEBL
+    24: required i64 numOfEbl
     25: required i64 dateOfIssueDeadline
     26: required string status
     27: required string transferCompanyID
