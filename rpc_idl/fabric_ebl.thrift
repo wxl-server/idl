@@ -123,6 +123,7 @@ struct EblFilter {
     27: required string transferCompanyID
     28: required string companyID
 }
+
 struct QueryAllEblListReq {
     1: required string token            // 身份验证Token
     2: optional i64 pageSize         // 可选的分页大小，默认值是10

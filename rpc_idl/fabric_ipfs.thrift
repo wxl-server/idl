@@ -36,6 +36,16 @@ struct CreateEblDocx {
     25: required string dateOfIssueDeadline
 }
 
+struct SealEblReq {
+    1: required string token
+    2: required CreateEblDocx ebl
+}
+
+struct SealEblResp {
+    1: required string file_hash
+}
+
 service FabricIpfs{
     CreateEblDocxResp CreateEblDocx(1: CreateEblDocxReq req)
+    SealEblResp SealEbl(1: SealEblReq req)
 }
