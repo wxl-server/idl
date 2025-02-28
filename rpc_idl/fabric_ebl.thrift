@@ -208,7 +208,7 @@ struct QueryInvoiceListReq {
     1: required string token
     2: required i64 pageSize
     3: required i64 pageNum
-    4: required Invoice invoice
+    4: required InvoiceFilter invoice
 }
 
 struct QueryInvoiceListResp {
@@ -266,6 +266,14 @@ struct Invoice {
   3: required i64 IssueDate
   4: required InvoiceType Type
   5: required string FileHash
+}
+
+struct InvoiceFilter {
+    1: optional string InvoiceNumber
+    2: optional double Amount
+    3: optional i64 IssueDate
+    4: optional InvoiceType Type
+    5: optional string FileHash
 }
 
 struct Contract {
