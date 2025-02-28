@@ -209,7 +209,7 @@ message CreateDocumentData{
 message QueryInvoiceListReq {
   required int64 page_size = 1[(api.body)="page_size"];
   required int64 page_number = 2[(api.body)="page_number"];
-  required InvoiceFilter invoice = 3[(api.body)="invoice"];
+  optional InvoiceFilter invoice = 3[(api.body)="invoice"];
 }
 
 message QueryInvoiceListResp {
