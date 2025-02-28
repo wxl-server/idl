@@ -85,12 +85,13 @@ struct Ebl {
     29: required i64 dateOfIssueDeadline
     30: required string status
     31: required string file
-    32: required list<string> contractFiles
-    33: required list<string> invoiceFiles
+    32: required list<i64> contractFiles
+    33: required list<i64> invoiceFiles
     34: required string transferCompanyID
     35: required string transferCompanyName
     36: required string companyID
     37: required string companyName
+    38: required string documentFiles
 }
 
 struct EblFilter {
@@ -171,8 +172,72 @@ struct UploadSealResp {
 struct CheckTokenReq {
     1: required string token
 }
+
 struct CheckTokenResp {
     1: required bool valid
+}
+
+struct CreateInvoiceReq {
+    1: required string token
+    2: required Invoice invoice
+}
+
+struct CreateInvoiceResp {
+    1: required i64 id
+}
+
+struct CreateContractReq {
+    1: required string token
+    2: required Contract contract
+}
+
+struct CreateContractResp {
+    1: required i64 id
+}
+
+struct CreateDocumentReq {
+    1: required string token
+    2: required Document document
+}
+
+struct CreateDocumentResp {
+    1: required i64 id
+}
+
+struct QueryInvoiceListReq {
+    1: required string token
+    2: required i64 pageSize
+    3: required i64 pageNum
+    4: required Invoice invoice
+}
+
+struct QueryInvoiceListResp {
+    1: required list<Invoice> invoiceList
+    2: required i64 total
+}
+
+struct QueryContractListReq {
+    1: required string token
+    2: required i64 pageSize
+    3: required i64 pageNum
+    4: required Contract contract
+}
+
+struct QueryContractListResp {
+    1: required list<Contract> contractList
+    2: required i64 total
+}
+
+struct QueryDocumentListReq {
+    1: required string token
+    2: required i64 pageSize
+    3: required i64 pageNum
+    4: required Document document
+}
+
+struct QueryDocumentListResp {
+    1: required list<Document> documentList
+    2: required i64 total
 }
 
 service FabricEbl{
@@ -186,13 +251,54 @@ service FabricEbl{
     OperateEblResp OperateEbl(1: OperateEblReq req)
     UploadSealResp UploadSeal(1: UploadSealReq req)
     CheckTokenResp CheckToken(1: CheckTokenReq req)
+    CreateInvoiceResp CreateInvoice(1: CreateInvoiceReq req)
+    CreateContractResp CreateContract(1: CreateContractReq req)
+    CreateDocumentResp CreateDocument(1: CreateDocumentReq req)
+    QueryInvoiceListResp QueryInvoiceList(1: QueryInvoiceListReq req)
+    QueryContractListResp QueryContractList(1: QueryContractListReq req)
+    QueryDocumentListResp QueryDocumentList(1: QueryDocumentListReq req)
 }
 
+
+struct Invoice {
+  1: required string InvoiceNumber
+  2: required double Amount
+  3: required i64 IssueDate
+  4: required InvoiceType Type
+  5: required string FileHash
+}
+
+struct Contract {
+    1: required string ContractNumber
+    2: required i64 SignDate
+    3: required i64 EffectiveDate
+    4: required double Amount
+    5: required ContractStatus Status
+    6: optional string FileHash
+    7: optional string extra
+}
+
+struct Document {
+    1: required DocType DocType
+    2: required string DocNumber
+    3: required i64 RelatedDate
+    4: optional string FileHash
+    5: optional string extra
+}
 struct Company {
     1: required i64 id
     2: required string company_code
     3: required string company_name
     4: required CompanyType company_type
+}
+
+
+enum FileType {
+  Invoice = 1;
+  Contract = 2;
+  Document = 3;
+  Seal = 4;
+  Ebl = 5;
 }
 
 enum OperationType {
@@ -216,4 +322,20 @@ enum CompanyType {
 enum UserType {
     Admin = 1;
     User = 2;
+}
+
+enum InvoiceType {
+    Electronic = 1;
+    Paper = 2;
+}
+
+enum ContractStatus {
+    Active = 1;
+    Terminated = 2;
+}
+
+enum DocType {
+    StorageIn = 1;
+    StorageOut = 2;
+    Settlement = 3;
 }

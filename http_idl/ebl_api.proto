@@ -164,6 +164,99 @@ message CheckTokenResp {
 message CheckTokenData{
 }
 
+message CreateInvoiceReq {
+  required Invoice invoice = 1;
+}
+
+message CreateInvoiceResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateInvoiceData data = 3;
+}
+
+message CreateInvoiceData{
+  required int64 id = 1;
+}
+
+message CreateContractReq {
+  required Contract contract = 1;
+}
+
+message CreateContractResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateContractData data = 3;
+}
+
+message CreateContractData{
+  required int64 id = 1;
+}
+
+message CreateDocumentReq {
+  required Document document = 1;
+}
+
+message CreateDocumentResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateDocumentData data = 3;
+}
+
+message CreateDocumentData{
+  required int64 id = 1;
+}
+
+message QueryInvoiceListReq {
+  required int64 page_size = 1[(api.body)="page_size"];
+  required string page_number = 2[(api.body)="page_number"];
+  required Invoice invoice = 3[(api.body)="invoice"];
+}
+
+message QueryInvoiceListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryInvoiceListData data = 3;
+}
+
+message QueryInvoiceListData{
+  repeated Invoice invoice_list = 1;
+  required int64 total = 2;
+}
+
+message QueryContractListReq {
+  required int64 page_size = 1[(api.body)="page_size"];
+  required string page_number = 2[(api.body)="page_number"];
+  required Contract contract = 3[(api.body)="contract"];
+}
+
+message QueryContractListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryContractListData data = 3;
+}
+
+message QueryContractListData{
+  repeated Contract contract_list = 1;
+  required int64 total = 2;
+}
+
+message QueryDocumentListReq {
+  required int64 page_size = 1[(api.body)="page_size"];
+  required string page_number = 2[(api.body)="page_number"];
+  required Document document = 3[(api.body)="document"];
+}
+
+message QueryDocumentListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryDocumentListData data = 3;
+}
+
+message QueryDocumentListData{
+  repeated Document document_list = 1;
+  required int64 total = 2;
+}
+
 service EblApi {
 
   rpc Login(LoginReq) returns(LoginResp) {
@@ -276,4 +369,48 @@ message Ebl {
   required string transferCompanyName = 35;
   required string companyID = 36;
   required string companyName = 37;
+}
+
+
+message Invoice {
+  required string InvoiceNumber = 1;
+  required double Amount = 2;
+  required int64 IssueDate = 3;
+  required InvoiceType Type = 4;
+  required string FileHash = 5;
+}
+
+message Contract {
+  required string ContractNumber = 1;
+  required int64 SignDate = 2;
+  required int64 EffectiveDate = 3;
+  required double Amount = 4;
+  required ContractStatus Status = 5;
+  optional string FileHash = 6;
+  optional string extra = 7;
+}
+
+message Document {
+  required DocType DocType = 1;
+  required string DocNumber = 2;
+  required int64 RelatedDate = 3;
+  optional string FileHash = 4;
+  optional string extra = 5;
+}
+
+
+enum InvoiceType {
+  Electronic = 1;
+  Paper = 2;
+}
+
+enum ContractStatus {
+  Active = 1;
+  Terminated = 2;
+}
+
+enum DocType {
+  StorageIn = 1;
+  StorageOut = 2;
+  Settlement = 3;
 }
