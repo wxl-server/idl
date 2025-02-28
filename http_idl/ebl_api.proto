@@ -299,6 +299,24 @@ service EblApi {
     option (api.post) = "/user/check";
   }
 
+  rpc CreateInvoice(CreateInvoiceReq) returns(CreateInvoiceResp) {
+    option (api.post) = "/invoice/create";
+  }
+  rpc CreateContract(CreateContractReq) returns(CreateContractResp) {
+    option (api.post) = "/contract/create";
+  }
+  rpc CreateDocument(CreateDocumentReq) returns(CreateDocumentResp) {
+    option (api.post) = "/document/create";
+  }
+  rpc QueryInvoiceList(QueryInvoiceListReq) returns(QueryInvoiceListResp) {
+    option (api.post) = "/invoice/query";
+  }
+  rpc QueryContractList(QueryContractListReq) returns(QueryContractListResp) {
+    option (api.post) = "/contract/query";
+  }
+  rpc QueryDocumentList(QueryDocumentListReq) returns(QueryDocumentListResp) {
+    option (api.post) = "/document/query";
+  }
 }
 enum CompanyType {
   Ship = 1;
