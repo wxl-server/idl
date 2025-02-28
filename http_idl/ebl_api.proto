@@ -208,7 +208,7 @@ message CreateDocumentData{
 
 message QueryInvoiceListReq {
   required int64 page_size = 1[(api.body)="page_size"];
-  required string page_number = 2[(api.body)="page_number"];
+  required int64 page_number = 2[(api.body)="page_number"];
   required Invoice invoice = 3[(api.body)="invoice"];
 }
 
@@ -225,7 +225,7 @@ message QueryInvoiceListData{
 
 message QueryContractListReq {
   required int64 page_size = 1[(api.body)="page_size"];
-  required string page_number = 2[(api.body)="page_number"];
+  required int64 page_number = 2[(api.body)="page_number"];
   required Contract contract = 3[(api.body)="contract"];
 }
 
@@ -242,7 +242,7 @@ message QueryContractListData{
 
 message QueryDocumentListReq {
   required int64 page_size = 1[(api.body)="page_size"];
-  required string page_number = 2[(api.body)="page_number"];
+  required int64 page_number = 2[(api.body)="page_number"];
   required Document document = 3[(api.body)="document"];
 }
 
