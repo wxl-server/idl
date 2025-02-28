@@ -152,6 +152,18 @@ message UploadSealData{
   required int64 id = 1;
 }
 
+message CheckTokenReq {
+}
+
+message CheckTokenResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CheckTokenData data = 3;
+}
+
+message CheckTokenData{
+}
+
 service EblApi {
 
   rpc Login(LoginReq) returns(LoginResp) {
@@ -189,6 +201,11 @@ service EblApi {
   rpc UploadSeal(UploadSealReq) returns(UploadSealResp) {
     option (api.post) = "/company/seal/upload";
   }
+
+  rpc CheckToken(CheckTokenReq) returns(CheckTokenResp) {
+    option (api.post) = "/user/check";
+  }
+
 }
 enum CompanyType {
   Ship = 1;

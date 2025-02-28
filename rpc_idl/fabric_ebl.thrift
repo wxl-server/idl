@@ -168,6 +168,13 @@ struct UploadSealResp {
     1: required i64 id
 }
 
+struct CheckTokenReq {
+    1: required string token
+}
+struct CheckTokenResp {
+    1: required bool valid
+}
+
 service FabricEbl{
     CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
     LoginResp Login(1: LoginReq req)
@@ -178,6 +185,7 @@ service FabricEbl{
     QueryEblListResp QueryEblList(1: QueryEblListReq req)
     OperateEblResp OperateEbl(1: OperateEblReq req)
     UploadSealResp UploadSeal(1: UploadSealReq req)
+    CheckTokenResp CheckToken(1: CheckTokenReq req)
 }
 
 struct Company {
