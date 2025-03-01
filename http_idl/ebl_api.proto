@@ -380,8 +380,8 @@ message Ebl {
   required int64 dateOfIssueDeadline = 29;
   required string status = 30;
   required string file = 31;
-  repeated string contractFiles = 32;
-  repeated string invoiceFiles = 33;
+  repeated int64 contractFiles = 32;
+  repeated int64 invoiceFiles = 33;
   required string transferCompanyID = 34;
   required string transferCompanyName = 35;
   required string companyID = 36;
