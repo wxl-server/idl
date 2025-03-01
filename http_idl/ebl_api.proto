@@ -6,7 +6,6 @@ option go_package = "ebl_api";
 
 import "api.proto";
 
-
 message LoginReq {
   required string email = 1[(api.body)="email"];
   required string password = 2[(api.body)="password"];
@@ -318,6 +317,7 @@ service EblApi {
     option (api.post) = "/document/query";
   }
 }
+
 enum CompanyType {
   Ship = 1;
   Bank = 2;
@@ -347,7 +347,6 @@ message Company {
   required string company_name = 3;
   required CompanyType company_type = 4;
 }
-
 
 message Ebl {
   required string eblNo = 1;
@@ -389,7 +388,6 @@ message Ebl {
   required string companyName = 37;
 }
 
-
 message Invoice {
   required string InvoiceNumber = 1;
   required double Amount = 2;
@@ -412,7 +410,7 @@ message Contract {
   required int64 EffectiveDate = 3;
   required double Amount = 4;
   required ContractStatus Status = 5;
-  optional string FileHash = 6;
+  required string FileHash = 6;
   optional string extra = 7;
 }
 
@@ -428,7 +426,7 @@ message Document {
   required DocType DocType = 1;
   required string DocNumber = 2;
   required int64 RelatedDate = 3;
-  optional string FileHash = 4;
+  required string FileHash = 4;
   optional string extra = 5;
 }
 
@@ -437,7 +435,6 @@ message DocumentFilter {
   optional string DocNumber = 2;
   optional int64 RelatedDate = 3;
 }
-
 
 enum InvoiceType {
   Electronic = 1;
