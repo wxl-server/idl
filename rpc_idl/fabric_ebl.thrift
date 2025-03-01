@@ -259,13 +259,15 @@ service FabricEbl{
     QueryDocumentListResp QueryDocumentList(1: QueryDocumentListReq req)
 }
 
-
 struct Invoice {
   1: required string InvoiceNumber
   2: required double Amount
   3: required i64 IssueDate
   4: required InvoiceType Type
   5: required string FileHash
+  6: optional string extra
+  7: required i64 CreatedAt
+  8: required i64 UpdatedAt
 }
 
 struct InvoiceFilter {
@@ -284,6 +286,8 @@ struct Contract {
     5: required ContractStatus Status
     6: required string FileHash
     7: optional string extra
+    8: required i64 CreatedAt
+    9: required i64 UpdatedAt
 }
 
 struct ContractFilter {
@@ -301,6 +305,8 @@ struct Document {
     3: required i64 RelatedDate
     4: required string FileHash
     5: optional string extra
+    6: required i64 CreatedAt
+    7: required i64 UpdatedAt
 }
 
 struct DocumentFilter {
