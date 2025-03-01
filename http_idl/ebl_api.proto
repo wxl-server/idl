@@ -99,7 +99,7 @@ message QueryAllEblListResp {
 }
 
 message QueryAllEblListData{
-  repeated Ebl ebl_list = 1;
+  repeated EblExtra ebl_list = 1;
   required int64 fetchedRecordsCount = 2;
   required string bookmark = 3;
 }
@@ -117,7 +117,7 @@ message QueryEblListResp {
 }
 
 message QueryEblListData{
-  repeated Ebl ebl_list = 1;
+  repeated EblExtra ebl_list = 1;
   required int64 fetchedRecordsCount = 2;
   required string bookmark = 3;
 }
@@ -256,6 +256,41 @@ message QueryDocumentListData{
   required int64 total = 2;
 }
 
+message GetInvoiceReq {
+  required int64 id = 1;
+}
+
+message GetInvoiceResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional GetInvoiceData data = 3;
+}
+message GetInvoiceData{
+  required Invoice invoice = 1;
+}
+message GetContractReq {
+  required int64 id = 1;
+}
+message GetContractResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional GetContractData data = 3;
+}
+message GetContractData{
+  required Contract contract = 1;
+}
+message GetDocumentReq {
+  required int64 id = 1;
+}
+message GetDocumentResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional GetDocumentData data = 3;
+}
+message GetDocumentData{
+  required Document document = 1;
+}
+
 service EblApi {
 
   rpc Login(LoginReq) returns(LoginResp) {
@@ -315,6 +350,15 @@ service EblApi {
   }
   rpc QueryDocumentList(QueryDocumentListReq) returns(QueryDocumentListResp) {
     option (api.post) = "/document/query";
+  }
+  rpc GetInvoice(GetInvoiceReq) returns(GetInvoiceResp) {
+    option (api.post) = "/invoice/get";
+  }
+  rpc GetContract(GetContractReq) returns(GetContractResp) {
+    option (api.post) = "/contract/get";
+  }
+  rpc GetDocument(GetDocumentReq) returns(GetDocumentResp) {
+    option (api.post) = "/document/get";
   }
 }
 
@@ -387,6 +431,47 @@ message Ebl {
   required string companyID = 36;
   required string companyName = 37;
   repeated int64 documentFiles = 38;
+}
+
+message EblExtra {
+  required string eblNo = 1;
+  required string originCompanyID = 2;
+  required string originCompanyName = 3;
+  required string shipperCompanyID = 4;
+  required string shipperCompanyName = 5;
+  required string consigneeCompanyID = 6;
+  required string consigneeCompanyName = 7;
+  required string notifyPartyCompanyID = 8;
+  required string notifyPartyCompanyName = 9;
+  required string placeOfReceipt = 10;
+  required string oceanVessel = 11;
+  required string portOfLoading = 12;
+  required string portOfDescharge = 13;
+  required string placeOfDestination = 14;
+  required string placeOfDelivery = 15;
+  required string shippingMarkes = 16;
+  required double quantityOfPackages = 17;
+  required string kindOfPackagesGW = 18;
+  required string kindOfPackagesM = 19;
+  required string descriptionOfGoods = 20;
+  required double grossWeight = 21;
+  required double measurement = 22;
+  required string freightAndCharges = 23;
+  required string placeOfIssue = 24;
+  required int64 dateOfIssue = 25;
+  required string deliveryAgent = 26;
+  required int64 shippedOnBoard = 27;
+  required int64 numOfEbl = 28;
+  required int64 dateOfIssueDeadline = 29;
+  required string status = 30;
+  required string file = 31;
+  repeated Contract contractFiles = 32;
+  repeated Invoice invoiceFiles = 33;
+  required string transferCompanyID = 34;
+  required string transferCompanyName = 35;
+  required string companyID = 36;
+  required string companyName = 37;
+  repeated Document documentFiles = 38;
 }
 
 message Invoice {

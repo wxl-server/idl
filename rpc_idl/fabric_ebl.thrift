@@ -168,6 +168,33 @@ struct QueryDocumentListResp {
     2: required i64 total
 }
 
+struct GetInvoiceReq {
+    1: required string token
+    2: required i64 id
+}
+
+struct GetInvoiceResp {
+    1: required Invoice invoice
+}
+
+struct GetContractReq {
+    1: required string token
+    2: required i64 id
+}
+
+struct GetContractResp {
+    1: required Contract contract
+}
+
+struct GetDocumentReq {
+    1: required string token
+    2: required i64 id
+}
+
+struct GetDocumentResp {
+    1: required Document document
+}
+
 service FabricEbl{
     CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
     LoginResp Login(1: LoginReq req)
@@ -185,6 +212,9 @@ service FabricEbl{
     QueryInvoiceListResp QueryInvoiceList(1: QueryInvoiceListReq req)
     QueryContractListResp QueryContractList(1: QueryContractListReq req)
     QueryDocumentListResp QueryDocumentList(1: QueryDocumentListReq req)
+    GetInvoiceResp GetInvoice(1: GetInvoiceReq req)
+    GetContractResp GetContract(1: GetContractReq req)
+    GetDocumentResp GetDocument(1: GetDocumentReq req)
 }
 
 struct Invoice {
