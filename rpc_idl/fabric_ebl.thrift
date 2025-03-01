@@ -282,7 +282,7 @@ struct Contract {
     3: required i64 EffectiveDate
     4: required double Amount
     5: required ContractStatus Status
-    6: optional string FileHash
+    6: required string FileHash
     7: optional string extra
 }
 
@@ -298,7 +298,7 @@ struct Document {
     1: required DocType DocType
     2: required string DocNumber
     3: required i64 RelatedDate
-    4: optional string FileHash
+    4: required string FileHash
     5: optional string extra
 }
 
