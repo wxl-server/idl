@@ -226,6 +226,7 @@ struct Invoice {
   6: optional string extra
   7: optional i64 CreatedAt
   8: optional i64 UpdatedAt
+  9: required i64 Id
 }
 
 struct InvoiceFilter {
@@ -246,6 +247,7 @@ struct Contract {
     7: optional string extra
     8: optional i64 CreatedAt
     9: optional i64 UpdatedAt
+    10: required i64 Id
 }
 
 struct ContractFilter {
@@ -265,6 +267,7 @@ struct Document {
     5: optional string extra
     6: optional i64 CreatedAt
     7: optional i64 UpdatedAt
+    8: required i64 Id
 }
 
 struct DocumentFilter {

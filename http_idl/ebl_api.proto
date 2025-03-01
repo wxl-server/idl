@@ -483,6 +483,7 @@ message Invoice {
   optional string extra = 6;
   optional int64 CreatedAt = 7;
   optional int64 UpdatedAt = 8;
+  required int64 Id = 9;
 }
 
 message InvoiceFilter {
@@ -503,6 +504,7 @@ message Contract {
   optional string extra = 7;
   optional int64 CreatedAt = 8;
   optional int64 UpdatedAt = 9;
+  required int64 Id = 10;
 }
 
 message ContractFilter {
@@ -522,6 +524,7 @@ message Document {
   optional string extra = 5;
   optional int64 CreatedAt = 6;
   optional int64 UpdatedAt = 7;
+  required int64 Id = 8;
 }
 
 message DocumentFilter {
