@@ -395,8 +395,8 @@ message Invoice {
   required InvoiceType Type = 4;
   required string FileHash = 5;
   optional string extra = 6;
-  optional int64 CreateAt = 7;
-  optional int64 UpdateAt = 8;
+  optional int64 CreatedAt = 7;
+  optional int64 UpdatedAt = 8;
 }
 
 message InvoiceFilter {
@@ -415,8 +415,8 @@ message Contract {
   required ContractStatus Status = 5;
   required string FileHash = 6;
   optional string extra = 7;
-  optional int64 CreateAt = 8;
-  optional int64 UpdateAt = 9;
+  optional int64 CreatedAt = 8;
+  optional int64 UpdatedAt = 9;
 }
 
 message ContractFilter {
@@ -434,8 +434,8 @@ message Document {
   required int64 RelatedDate = 3;
   required string FileHash = 4;
   optional string extra = 5;
-  optional int64 CreateAt = 6;
-  optional int64 UpdateAt = 7;
+  optional int64 CreatedAt = 6;
+  optional int64 UpdatedAt = 7;
 }
 
 message DocumentFilter {
