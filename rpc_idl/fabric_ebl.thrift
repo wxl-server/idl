@@ -53,78 +53,6 @@ struct CreateEblResp {
     1: required i64 id
 }
 
-struct Ebl {
-    1: required string eblNo
-    2: required string originCompanyID
-    3: required string originCompanyName
-    4: required string shipperCompanyID
-    5: required string shipperCompanyName
-    6: required string consigneeCompanyID
-    7: required string consigneeCompanyName
-    8: required string notifyPartyCompanyID
-    9: required string notifyPartyCompanyName
-    10: required string placeOfReceipt
-    11: required string oceanVessel
-    12: required string portOfLoading
-    13: required string portOfDescharge
-    14: required string placeOfDestination
-    15: required string placeOfDelivery
-    16: required string shippingMarkes
-    17: required double quantityOfPackages
-    18: required string kindOfPackagesGW
-    19: required string kindOfPackagesM
-    20: required string descriptionOfGoods
-    21: required double grossWeight
-    22: required double measurement
-    23: required string freightAndCharges
-    24: required string placeOfIssue
-    25: required i64 dateOfIssue
-    26: required string deliveryAgent
-    27: required i64 shippedOnBoard
-    28: required i64 numOfEbl
-    29: required i64 dateOfIssueDeadline
-    30: required string status
-    31: required string file
-    32: required list<i64> contractFiles
-    33: required list<i64> invoiceFiles
-    34: required string transferCompanyID
-    35: required string transferCompanyName
-    36: required string companyID
-    37: required string companyName
-    38: required list<i64> documentFiles
-}
-
-struct EblFilter {
-    1: required string eblNo
-    2: required string originCompanyID
-    3: required string shipperCompanyID
-    4: required string consigneeCompanyID
-    5: required string notifyPartyCompanyID
-    6: required string placeOfReceipt
-    7: required string oceanVessel
-    8: required string portOfLoading
-    9: required string portOfDescharge
-    10: required string placeOfDestination
-    11: required string placeOfDelivery
-    12: required string shippingMarkes
-    13: required double quantityOfPackages
-    14: required string kindOfPackagesGW
-    15: required string kindOfPackagesM
-    16: required string descriptionOfGoods
-    17: required double grossWeight
-    18: required double measurement
-    19: required string freightAndCharges
-    20: required string placeOfIssue
-    21: required i64 dateOfIssue
-    22: required string deliveryAgent
-    23: required i64 shippedOnBoard
-    24: required i64 numOfEbl
-    25: required i64 dateOfIssueDeadline
-    26: required string status
-    27: required string transferCompanyID
-    28: required string companyID
-}
-
 struct QueryAllEblListReq {
     1: required string token            // 身份验证Token
     2: optional i64 pageSize         // 可选的分页大小，默认值是10
@@ -132,7 +60,7 @@ struct QueryAllEblListReq {
 }
 
 struct QueryAllEblListResp {
-    1: required list<Ebl> eblList       // 返回的 Ebl 列表
+    1: required list<EblExtra> eblList       // 返回的 Ebl 列表
     2: required i64 fetchedRecordsCount      // 总记录数，便于计算分页
     3: required string bookmark         // 返回的分页标记，用于继续分页查询
 }
@@ -145,7 +73,7 @@ struct QueryEblListReq {
 }
 
 struct QueryEblListResp {
-    1: required list<Ebl> eblList       // 返回的 Ebl 列表
+    1: required list<EblExtra> eblList       // 返回的 Ebl 列表
     2: required i64 fetchedRecordsCount      // 总记录数，便于计算分页
     3: required string bookmark         // 返回的分页标记，用于继续分页查询
 }
@@ -321,6 +249,119 @@ struct Company {
     2: required string company_code
     3: required string company_name
     4: required CompanyType company_type
+}
+
+struct Ebl {
+    1: required string eblNo
+    2: required string originCompanyID
+    3: required string originCompanyName
+    4: required string shipperCompanyID
+    5: required string shipperCompanyName
+    6: required string consigneeCompanyID
+    7: required string consigneeCompanyName
+    8: required string notifyPartyCompanyID
+    9: required string notifyPartyCompanyName
+    10: required string placeOfReceipt
+    11: required string oceanVessel
+    12: required string portOfLoading
+    13: required string portOfDescharge
+    14: required string placeOfDestination
+    15: required string placeOfDelivery
+    16: required string shippingMarkes
+    17: required double quantityOfPackages
+    18: required string kindOfPackagesGW
+    19: required string kindOfPackagesM
+    20: required string descriptionOfGoods
+    21: required double grossWeight
+    22: required double measurement
+    23: required string freightAndCharges
+    24: required string placeOfIssue
+    25: required i64 dateOfIssue
+    26: required string deliveryAgent
+    27: required i64 shippedOnBoard
+    28: required i64 numOfEbl
+    29: required i64 dateOfIssueDeadline
+    30: required string status
+    31: required string file
+    32: required list<i64> contractFiles
+    33: required list<i64> invoiceFiles
+    34: required string transferCompanyID
+    35: required string transferCompanyName
+    36: required string companyID
+    37: required string companyName
+    38: required list<i64> documentFiles
+}
+
+struct EblExtra {
+    1: required string eblNo
+    2: required string originCompanyID
+    3: required string originCompanyName
+    4: required string shipperCompanyID
+    5: required string shipperCompanyName
+    6: required string consigneeCompanyID
+    7: required string consigneeCompanyName
+    8: required string notifyPartyCompanyID
+    9: required string notifyPartyCompanyName
+    10: required string placeOfReceipt
+    11: required string oceanVessel
+    12: required string portOfLoading
+    13: required string portOfDescharge
+    14: required string placeOfDestination
+    15: required string placeOfDelivery
+    16: required string shippingMarkes
+    17: required double quantityOfPackages
+    18: required string kindOfPackagesGW
+    19: required string kindOfPackagesM
+    20: required string descriptionOfGoods
+    21: required double grossWeight
+    22: required double measurement
+    23: required string freightAndCharges
+    24: required string placeOfIssue
+    25: required i64 dateOfIssue
+    26: required string deliveryAgent
+    27: required i64 shippedOnBoard
+    28: required i64 numOfEbl
+    29: required i64 dateOfIssueDeadline
+    30: required string status
+    31: required string file
+    32: required list<Contract> contractFiles
+    33: required list<Invoice> invoiceFiles
+    34: required string transferCompanyID
+    35: required string transferCompanyName
+    36: required string companyID
+    37: required string companyName
+    38: required list<Document> documentFiles
+}
+
+struct EblFilter {
+    1: required string eblNo
+    2: required string originCompanyID
+    3: required string shipperCompanyID
+    4: required string consigneeCompanyID
+    5: required string notifyPartyCompanyID
+    6: required string placeOfReceipt
+    7: required string oceanVessel
+    8: required string portOfLoading
+    9: required string portOfDescharge
+    10: required string placeOfDestination
+    11: required string placeOfDelivery
+    12: required string shippingMarkes
+    13: required double quantityOfPackages
+    14: required string kindOfPackagesGW
+    15: required string kindOfPackagesM
+    16: required string descriptionOfGoods
+    17: required double grossWeight
+    18: required double measurement
+    19: required string freightAndCharges
+    20: required string placeOfIssue
+    21: required i64 dateOfIssue
+    22: required string deliveryAgent
+    23: required i64 shippedOnBoard
+    24: required i64 numOfEbl
+    25: required i64 dateOfIssueDeadline
+    26: required string status
+    27: required string transferCompanyID
+    28: required string companyID
 }
 
 enum FileType {
