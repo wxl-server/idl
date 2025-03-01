@@ -226,7 +226,7 @@ message QueryInvoiceListData{
 message QueryContractListReq {
   required int64 page_size = 1[(api.body)="page_size"];
   required int64 page_number = 2[(api.body)="page_number"];
-  required Contract contract = 3[(api.body)="contract"];
+  optional ContractFilter contract = 3[(api.body)="contract"];
 }
 
 message QueryContractListResp {
@@ -243,7 +243,7 @@ message QueryContractListData{
 message QueryDocumentListReq {
   required int64 page_size = 1[(api.body)="page_size"];
   required int64 page_number = 2[(api.body)="page_number"];
-  required Document document = 3[(api.body)="document"];
+  optional DocumentFilter document = 3[(api.body)="document"];
 }
 
 message QueryDocumentListResp {
@@ -416,12 +416,26 @@ message Contract {
   optional string extra = 7;
 }
 
+message ContractFilter {
+  optional string ContractNumber = 1;
+  optional int64 SignDate = 2;
+  optional int64 EffectiveDate = 3;
+  optional double Amount = 4;
+  optional ContractStatus Status = 5;
+}
+
 message Document {
   required DocType DocType = 1;
   required string DocNumber = 2;
   required int64 RelatedDate = 3;
   optional string FileHash = 4;
   optional string extra = 5;
+}
+
+message DocumentFilter {
+  optional DocType DocType = 1;
+  optional string DocNumber = 2;
+  optional int64 RelatedDate = 3;
 }
 
 

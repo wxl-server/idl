@@ -220,7 +220,7 @@ struct QueryContractListReq {
     1: required string token
     2: required i64 pageSize
     3: required i64 pageNum
-    4: required Contract contract
+    4: optional ContractFilter contract
 }
 
 struct QueryContractListResp {
@@ -232,7 +232,7 @@ struct QueryDocumentListReq {
     1: required string token
     2: required i64 pageSize
     3: required i64 pageNum
-    4: required Document document
+    4: optional DocumentFilter document
 }
 
 struct QueryDocumentListResp {
@@ -286,6 +286,14 @@ struct Contract {
     7: optional string extra
 }
 
+struct ContractFilter {
+    1: optional string ContractNumber
+    2: optional i64 SignDate
+    3: optional i64 EffectiveDate
+    4: optional double Amount
+    5: required ContractStatus Status
+}
+
 struct Document {
     1: required DocType DocType
     2: required string DocNumber
@@ -293,13 +301,19 @@ struct Document {
     4: optional string FileHash
     5: optional string extra
 }
+
+struct DocumentFilter {
+    1: optional DocType DocType
+    2: optional string DocNumber
+    3: optional i64 RelatedDate
+}
+
 struct Company {
     1: required i64 id
     2: required string company_code
     3: required string company_name
     4: required CompanyType company_type
 }
-
 
 enum FileType {
   Invoice = 1;
