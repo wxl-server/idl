@@ -91,7 +91,7 @@ struct Ebl {
     35: required string transferCompanyName
     36: required string companyID
     37: required string companyName
-    38: required string documentFiles
+    38: required list<i64> documentFiles
 }
 
 struct EblFilter {

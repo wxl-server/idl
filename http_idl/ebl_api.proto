@@ -386,6 +386,7 @@ message Ebl {
   required string transferCompanyName = 35;
   required string companyID = 36;
   required string companyName = 37;
+  repeated int64 documentFiles = 38;
 }
 
 message Invoice {
