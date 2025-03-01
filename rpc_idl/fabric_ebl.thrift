@@ -291,7 +291,8 @@ struct ContractFilter {
     2: optional i64 SignDate
     3: optional i64 EffectiveDate
     4: optional double Amount
-    5: required ContractStatus Status
+    5: optional ContractStatus Status
+    6: optional string FileHash
 }
 
 struct Document {
@@ -306,6 +307,7 @@ struct DocumentFilter {
     1: optional DocType DocType
     2: optional string DocNumber
     3: optional i64 RelatedDate
+    4: optional string FileHash
 }
 
 struct Company {
