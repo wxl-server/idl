@@ -107,7 +107,7 @@ message QueryAllEblListData{
 message QueryEblListReq {
   required int64 page_size = 1[(api.body)="page_size"];
   required string bookmark = 2[(api.body)="bookmark"];
-  required Ebl ebl = 3[(api.body)="ebl"];
+  required EblFilter ebl = 3[(api.body)="ebl"];
 }
 
 message QueryEblListResp {
@@ -433,6 +433,36 @@ message Ebl {
   repeated int64 documentFiles = 38;
 }
 
+message EblFilter {
+  required string eblNo = 1;
+  required string originCompanyID = 2;
+  required string shipperCompanyID = 3;  // 原4→3
+  required string consigneeCompanyID = 4; // 原6→4
+  required string notifyPartyCompanyID = 5; // 原8→5
+  required string placeOfReceipt = 6;     // 原10→6
+  required string oceanVessel = 7;        // 原11→7
+  required string portOfLoading = 8;      // 原12→8
+  required string portOfDescharge = 9;   // 原13→9
+  required string placeOfDestination = 10; // 原14→10
+  required string placeOfDelivery = 11;   // 原15→11
+  required string shippingMarkes = 12;    // 原16→12
+  required double quantityOfPackages = 13; // 原17→13
+  required string kindOfPackagesGW = 14; // 原18→14
+  required string kindOfPackagesM = 15;   // 原19→15
+  required string descriptionOfGoods = 16; // 原20→16
+  required double grossWeight = 17;       // 原21→17
+  required double measurement = 18;       // 原22→18
+  required string freightAndCharges = 19; // 原23→19
+  required string placeOfIssue = 20;      // 原24→20
+  required int64 dateOfIssue = 21;        // 原25→21
+  required string deliveryAgent = 22;     // 原26→22
+  required int64 shippedOnBoard = 23;     // 原27→23
+  required int64 numOfEbl = 24;           // 原28→24
+  required int64 dateOfIssueDeadline = 25;// 原29→25
+  required string status = 26;            // 原30→26
+  required string transferCompanyID = 27; // 原34→27
+  required string companyID = 28;         // 原36→28
+}
 message EblExtra {
   required string eblNo = 1;
   required string originCompanyID = 2;
