@@ -1,5 +1,23 @@
 namespace go miner_core
 
+struct SignUpReq {
+    1: required string email
+    2: required string password
+}
+
+struct SignUpResp {
+    1: required i64 id
+}
+
+struct LoginReq {
+    1: required string email
+    2: required string password
+}
+
+struct LoginResp {
+    1: required string token
+}
+
 struct QueryJobListReq {
     // 分页参数
     1: required i64 page_num
@@ -31,29 +49,50 @@ struct CreateJobResp {
     1: required i64 id
 }
 
-struct SignUpReq {
-    1: required string email
-    2: required string password
+struct QueryIndicatorListReq{
+
 }
 
-struct SignUpResp {
-    1: required i64 id
+struct QueryIndicatorListResp{
+    1: required list<FirstLevelIndicator> indicators
 }
 
-struct LoginReq {
-    1: required string email
-    2: required string password
+struct FirstLevelIndicator {
+  1: required string display_name
+  2: required list<SecondLevelIndicator> children
 }
 
-struct LoginResp {
-    1: required string token
+struct SecondLevelIndicator {
+  1: required string factor_code
+  2: required string display_name
+  3: required list<AllowOperators> allow_operators
+}
+
+struct AllowOperators {
+  1: required string operator_code
+  2: required string display_name
+  3: required InputElType input_el_type
+  4: optional list<AllowValues> allow_values
+}
+
+struct AllowValues {
+  required string display_name = 1;
+  required string value = 2;
 }
 
 service MinerCore{
-    QueryJobListResp QueryJobList(1: QueryJobListReq req)
-    CreateJobResp CreateJob(1: CreateJobReq req)
     SignUpResp SignUp(1: SignUpReq req)
     LoginResp Login(1: LoginReq req)
+    QueryJobListResp QueryJobList(1: QueryJobListReq req)
+    CreateJobResp CreateJob(1: CreateJobReq req)
+    QueryIndicatorListResp QueryIndicatorList(1: QueryIndicatorListReq req)
+}
+
+enum InputElType {
+  Unknown = 0;
+  InputTag = 1;
+  Input = 2;
+  Select = 3;
 }
 
 enum Order {

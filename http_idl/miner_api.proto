@@ -76,6 +76,43 @@ message CreateJobData {
   required int64 id = 1;
 }
 
+message QueryIndicatorListReq {
+
+}
+
+message QueryIndicatorListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryIndicatorListData data = 3;
+}
+
+message QueryIndicatorListData {
+  required FirstLevelIndicator indicators = 1;
+}
+
+message FirstLevelIndicator {
+  required string display_name = 1;
+  repeated SecondLevelIndicator children = 2;
+}
+
+message SecondLevelIndicator {
+  required string factor_code = 1;
+  required string display_name = 2;
+  repeated AllowOperators allow_operators = 3;
+}
+
+message AllowOperators {
+  required string operator_code = 1;
+  required string display_name = 2;
+  required InputElType input_el_type = 3;
+  repeated AllowValues allow_values = 4;
+}
+
+message AllowValues {
+  required string display_name = 1;
+  required string value = 2;
+}
+
 service MinerApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
@@ -89,6 +126,16 @@ service MinerApi {
   rpc CreateJob(CreateJobReq) returns(CreateJobResp) {
     option (api.post) = "/job/create";
   }
+  rpc QueryIndicatorList(QueryIndicatorListReq) returns(QueryIndicatorListResp) {
+    option (api.post) = "/indicator/query/list";
+  }
+}
+
+enum InputElType {
+  Unknown = 0;
+  InputTag = 1;
+  Input = 2;
+  Select = 3;
 }
 
 enum Order {
