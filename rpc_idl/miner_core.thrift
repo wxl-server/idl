@@ -49,11 +49,12 @@ struct CreateJobResp {
     1: required i64 id
 }
 
-struct DeleteJobResp {
+struct DeleteJobReq {
     1: required i64 id
+    2: required string token
 }
 
-struct DeleteJobReq {
+struct DeleteJobResp {
 
 }
 
