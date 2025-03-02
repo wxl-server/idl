@@ -23,6 +23,7 @@ struct QueryJobListResp {
 struct CreateJobReq {
     1: required string name
     2: optional string description
+    3: required string token
 }
 
 struct CreateJobResp {
