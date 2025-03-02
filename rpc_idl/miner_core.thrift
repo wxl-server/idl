@@ -54,7 +54,7 @@ struct QueryIndicatorListReq{
 }
 
 struct QueryIndicatorListResp{
-    1: required list<FirstLevelIndicator> indicators
+  1: required list<FirstLevelIndicator> indicators
 }
 
 struct FirstLevelIndicator {
@@ -76,8 +76,8 @@ struct AllowOperators {
 }
 
 struct AllowValues {
-  required string display_name = 1;
-  required string value = 2;
+  1: required string display_name
+  2: required string value
 }
 
 service MinerCore{
