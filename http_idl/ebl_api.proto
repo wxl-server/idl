@@ -484,6 +484,7 @@ message Invoice {
   optional int64 CreatedAt = 7;
   optional int64 UpdatedAt = 8;
   required int64 Id = 9;
+  required string Name = 10;
 }
 
 message InvoiceFilter {
@@ -492,6 +493,7 @@ message InvoiceFilter {
   optional int64 IssueDate = 3;
   optional InvoiceType Type = 4;
   optional string FileHash = 5;
+  optional string Name = 6;
 }
 
 message Contract {
@@ -505,6 +507,7 @@ message Contract {
   optional int64 CreatedAt = 8;
   optional int64 UpdatedAt = 9;
   required int64 Id = 10;
+  required string Name = 11;
 }
 
 message ContractFilter {
@@ -514,6 +517,7 @@ message ContractFilter {
   optional double Amount = 4;
   optional ContractStatus Status = 5;
   optional string FileHash = 6;
+  optional string Name = 7;
 }
 
 message Document {
@@ -525,6 +529,7 @@ message Document {
   optional int64 CreatedAt = 6;
   optional int64 UpdatedAt = 7;
   required int64 Id = 8;
+  required string Name = 9;
 }
 
 message DocumentFilter {
@@ -532,6 +537,7 @@ message DocumentFilter {
   optional string DocNumber = 2;
   optional int64 RelatedDate = 3;
   optional string FileHash = 4;
+  optional string Name = 5;
 }
 
 enum InvoiceType {

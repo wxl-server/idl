@@ -227,6 +227,7 @@ struct Invoice {
   7: optional i64 CreatedAt
   8: optional i64 UpdatedAt
   9: required i64 Id
+  10: required string name
 }
 
 struct InvoiceFilter {
@@ -235,6 +236,7 @@ struct InvoiceFilter {
     3: optional i64 IssueDate
     4: optional InvoiceType Type
     5: optional string FileHash
+    6: optional string name
 }
 
 struct Contract {
@@ -248,6 +250,7 @@ struct Contract {
     8: optional i64 CreatedAt
     9: optional i64 UpdatedAt
     10: required i64 Id
+    11: required string name
 }
 
 struct ContractFilter {
@@ -257,6 +260,7 @@ struct ContractFilter {
     4: optional double Amount
     5: optional ContractStatus Status
     6: optional string FileHash
+    7: optional string name
 }
 
 struct Document {
@@ -268,6 +272,7 @@ struct Document {
     6: optional i64 CreatedAt
     7: optional i64 UpdatedAt
     8: required i64 Id
+    9: required string name
 }
 
 struct DocumentFilter {
@@ -275,6 +280,7 @@ struct DocumentFilter {
     2: optional string DocNumber
     3: optional i64 RelatedDate
     4: optional string FileHash
+    5: optional string name
 }
 
 struct Company {
