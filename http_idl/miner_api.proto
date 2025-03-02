@@ -76,6 +76,15 @@ message CreateJobData {
   required int64 id = 1;
 }
 
+message DeleteJobReq {
+  required int64 id = 1;
+}
+
+message DeleteJobResp {
+  required int64 code = 1;
+  required string message = 2;
+}
+
 message QueryIndicatorListReq {
 
 }
@@ -87,7 +96,7 @@ message QueryIndicatorListResp {
 }
 
 message QueryIndicatorListData {
-  required FirstLevelIndicator indicators = 1;
+  repeated FirstLevelIndicator indicators = 1;
 }
 
 message FirstLevelIndicator {
@@ -126,8 +135,11 @@ service MinerApi {
   rpc CreateJob(CreateJobReq) returns(CreateJobResp) {
     option (api.post) = "/job/create";
   }
+  rpc DeleteJob(DeleteJobReq) returns(DeleteJobResp) {
+    option (api.post) = "/job/delete";
+  }
   rpc QueryIndicatorList(QueryIndicatorListReq) returns(QueryIndicatorListResp) {
-    option (api.post) = "/indicator/query/list";
+    option (api.get) = "/indicator/query/list";
   }
 }
 

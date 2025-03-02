@@ -49,6 +49,14 @@ struct CreateJobResp {
     1: required i64 id
 }
 
+struct DeleteJobResp {
+    1: required i64 id
+}
+
+struct DeleteJobReq {
+
+}
+
 struct QueryIndicatorListReq{
 
 }
@@ -85,6 +93,7 @@ service MinerCore{
     LoginResp Login(1: LoginReq req)
     QueryJobListResp QueryJobList(1: QueryJobListReq req)
     CreateJobResp CreateJob(1: CreateJobReq req)
+    DeleteJobResp DeleteJob(1: DeleteJobReq req)
     QueryIndicatorListResp QueryIndicatorList(1: QueryIndicatorListReq req)
 }
 
