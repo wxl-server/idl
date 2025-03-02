@@ -99,7 +99,7 @@ struct AllowValues {
 
 struct RunTaskReq {
     1: required i64 job_id
-    2: required Rule rules
+    2: required list<Rule> rules
     3: required string logic_expression
     4: required i64 limit
 }
