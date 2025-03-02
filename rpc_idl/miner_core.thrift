@@ -20,6 +20,15 @@ struct QueryJobListResp {
     2: required i64 total
 }
 
+struct CreateJobReq {
+    1: required string name
+    2: optional string description
+}
+
+struct CreateJobResp {
+    1: required i64 id
+}
+
 struct SignUpReq {
     1: required string email
     2: required string password
@@ -40,6 +49,7 @@ struct LoginResp {
 
 service MinerCore{
     QueryJobListResp QueryJobList(1: QueryJobListReq req)
+    CreateJobResp CreateJob(1: CreateJobReq req)
     SignUpResp SignUp(1: SignUpReq req)
     LoginResp Login(1: LoginReq req)
 }

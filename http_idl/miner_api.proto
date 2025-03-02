@@ -60,6 +60,21 @@ message QueryJobListData {
   required int64 total = 2;
 }
 
+message CreateJobReq {
+  required int64 name = 1[(api.body)="name"];
+  optional int64 description = 2[(api.body)="description"];
+}
+
+message CreateJobResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateJobData data = 3;
+}
+
+message CreateJobData {
+  required int64 id = 1;
+}
+
 service MinerApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
@@ -69,6 +84,9 @@ service MinerApi {
   }
   rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
     option (api.post) = "/job/query/list";
+  }
+  rpc CreateJob(CreateJobReq) returns(CreateJobResp) {
+    option (api.post) = "/job/create";
   }
 }
 
