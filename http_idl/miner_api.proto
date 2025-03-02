@@ -61,8 +61,8 @@ message QueryJobListData {
 }
 
 message CreateJobReq {
-  required int64 name = 1[(api.body)="name"];
-  optional int64 description = 2[(api.body)="description"];
+  required string name = 1[(api.body)="name"];
+  optional string description = 2[(api.body)="description"];
 }
 
 message CreateJobResp {
