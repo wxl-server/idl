@@ -72,6 +72,6 @@ struct Job {
 }
 
 struct User {
-  required i64 id = 1;
-  required string email = 2;
+  1: required i64 id
+  2: required string email
 }
