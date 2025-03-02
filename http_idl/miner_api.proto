@@ -6,6 +6,20 @@ option go_package = "miner_api";
 
 import "api.proto";
 
+message LoginReq {
+  required string email = 1[(api.body)="email"];
+  required string password = 2[(api.body)="password"];
+}
+message LoginResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional LoginData data = 3;
+}
+
+message LoginData {
+  required string token = 1;
+}
+
 message SignUpReq {
   required string email = 1[(api.body)="email"];
   required string password = 2[(api.body)="password"];
@@ -58,6 +72,9 @@ message QueryJobListData {
 }
 
 service MinerApi {
+  rpc Login(LoginReq) returns(LoginResp) {
+    option (api.post) = "/user/login";
+  }
   rpc SignUp(SignUpReq) returns(SignUpResp) {
     option (api.post) = "/user/signup";
   }

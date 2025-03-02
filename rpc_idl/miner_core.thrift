@@ -8,7 +8,7 @@ struct QueryJobListReq {
     4: optional Order order
 
     // 过滤条件
-    5: optional i64 id
+    5: optional string name
     6: optional i64 created_by
     7: optional i64 created_at_start
     8: optional i64 created_at_end
