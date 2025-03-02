@@ -64,9 +64,14 @@ struct Job {
     1: required i64 id
     2: required string name
     3: required string description
-    4: required i64 created_by
-    5: required i64 updated_by
+    4: required User created_by
+    5: required User updated_by
     6: required i64 created_at
     7: required i64 updated_at
     8: optional string extra
+}
+
+struct User {
+  required i64 id = 1;
+  required string email = 2;
 }
