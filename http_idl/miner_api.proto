@@ -35,17 +35,6 @@ message SignUpData {
   required int64 id = 1;
 }
 
-message UpdatePasswordReq {
-  required string email = 1[(api.body)="email"];
-  required string old_password = 2[(api.body)="old_password"];
-  required string password = 3[(api.body)="password"];
-}
-
-message UpdatePasswordResp {
-  required int64 code = 1;
-  required string message = 2;
-}
-
 message QueryJobListReq {
   // 分页参数
   required int64 page_num = 1[(api.body)="page_num"];
@@ -54,10 +43,11 @@ message QueryJobListReq {
   optional Order order = 4[(api.body)="order"];
 
   // 过滤条件
-  optional int64 name = 5 [(api.body)="name"];
-  optional int64 created_by = 6 [(api.body)="created_by"];
-  optional int64 created_at_start = 7 [(api.body)="created_at_start"];
-  optional int64 created_at_end = 8 [(api.body)="created_at_end"];
+  optional int64 id = 5 [(api.body)="id"];
+  optional string name = 6 [(api.body)="name"];
+  optional int64 created_by = 7 [(api.body)="created_by"];
+  optional int64 created_at_start = 8 [(api.body)="created_at_start"];
+  optional int64 created_at_end = 9 [(api.body)="created_at_end"];
 }
 
 message QueryJobListResp {
@@ -71,6 +61,21 @@ message QueryJobListData {
   required int64 total = 2;
 }
 
+message CreateJobReq {
+  required string name = 1[(api.body)="name"];
+  optional string description = 2[(api.body)="description"];
+}
+
+message CreateJobResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateJobData data = 3;
+}
+
+message CreateJobData {
+  required int64 id = 1;
+}
+
 service MinerApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
@@ -78,11 +83,11 @@ service MinerApi {
   rpc SignUp(SignUpReq) returns(SignUpResp) {
     option (api.post) = "/user/signup";
   }
-  rpc UpdatePassword(UpdatePasswordReq) returns(UpdatePasswordResp) {
-    option (api.post) = "/user/password/update";
-  }
   rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
     option (api.post) = "/job/query/list";
+  }
+  rpc CreateJob(CreateJobReq) returns(CreateJobResp) {
+    option (api.post) = "/job/create";
   }
 }
 
@@ -106,9 +111,14 @@ message Job {
   required int64 id = 1;
   required string name = 2;
   required string description = 3;
-  required int64 created_by = 4;
-  required int64 updated_by = 5;
+  required User created_by = 4;
+  required User updated_by = 5;
   required int64 created_at = 6;
   required int64 updated_at = 7;
   optional string extra = 8;
+}
+
+message User {
+  required int64 id = 1;
+  required string email = 2;
 }
