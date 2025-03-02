@@ -97,6 +97,23 @@ struct AllowValues {
   2: required string value
 }
 
+struct RunTaskReq {
+    1: required i64 job_id
+    2: required Rule rules
+    3: required string logic_expression
+    4: required i64 limit
+}
+
+struct Rule {
+  1: required i64 id
+  2: required string factor_code
+  3: required string operator_code
+  4: required list<string> value_list
+}
+
+struct RunTaskResp {
+}
+
 service MinerCore{
     SignUpResp SignUp(1: SignUpReq req)
     LoginResp Login(1: LoginReq req)
@@ -105,6 +122,7 @@ service MinerCore{
     CreateJobResp CreateJob(1: CreateJobReq req)
     DeleteJobResp DeleteJob(1: DeleteJobReq req)
     QueryIndicatorListResp QueryIndicatorList(1: QueryIndicatorListReq req)
+    RunTaskResp RunTask(1: RunTaskReq req)
 }
 
 enum InputElType {

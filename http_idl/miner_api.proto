@@ -139,6 +139,30 @@ message AllowValues {
   required string value = 2;
 }
 
+message RunTaskReq {
+  required int64 job_id = 1;
+  repeated Rule rules = 2;
+  required string logic_expression = 3;
+  required int64 limit = 4;
+}
+
+message Rule {
+  required int64 id  = 1;
+  required string factor_code  = 2;
+  required string operator_code  = 3;
+  repeated string value_list  = 4;
+}
+
+message RunTaskResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional RunTaskData data = 3;
+}
+
+message RunTaskData {
+
+}
+
 service MinerApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
@@ -147,7 +171,7 @@ service MinerApi {
     option (api.post) = "/user/signup";
   }
   rpc QueryUserList(QueryUserListReq) returns(QueryUserListResp) {
-    option (api.post) = "/user/query/list";
+    option (api.get) = "/user/query/list";
   }
   rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
     option (api.post) = "/job/query/list";
@@ -160,6 +184,9 @@ service MinerApi {
   }
   rpc QueryIndicatorList(QueryIndicatorListReq) returns(QueryIndicatorListResp) {
     option (api.get) = "/indicator/query/list";
+  }
+  rpc RunTask(RunTaskReq) returns(RunTaskResp) {
+    option (api.get) = "/task/run";
   }
 }
 
