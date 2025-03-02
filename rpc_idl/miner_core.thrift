@@ -18,6 +18,14 @@ struct LoginResp {
     1: required string token
 }
 
+struct QueryUserListReq {
+
+}
+
+struct QueryUserListResp {
+    1: required list<User> user_list
+}
+
 struct QueryJobListReq {
     // 分页参数
     1: required i64 page_num
@@ -92,6 +100,7 @@ struct AllowValues {
 service MinerCore{
     SignUpResp SignUp(1: SignUpReq req)
     LoginResp Login(1: LoginReq req)
+    QueryUserListResp QueryUserList(1: QueryUserListReq req)
     QueryJobListResp QueryJobList(1: QueryJobListReq req)
     CreateJobResp CreateJob(1: CreateJobReq req)
     DeleteJobResp DeleteJob(1: DeleteJobReq req)

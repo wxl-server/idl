@@ -31,6 +31,19 @@ message SignUpResp {
   optional SignUpData data = 3;
 }
 
+message QueryUserListReq {
+
+}
+message QueryUserListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryUserListData data = 3;
+}
+
+message QueryUserListData {
+  repeated User user_list = 1;
+}
+
 message SignUpData {
   required int64 id = 1;
 }
@@ -83,6 +96,10 @@ message DeleteJobReq {
 message DeleteJobResp {
   required int64 code = 1;
   required string message = 2;
+  optional DeleteJobData data = 3;
+}
+
+message DeleteJobData {
 }
 
 message QueryIndicatorListReq {
@@ -128,6 +145,9 @@ service MinerApi {
   }
   rpc SignUp(SignUpReq) returns(SignUpResp) {
     option (api.post) = "/user/signup";
+  }
+  rpc QueryUserList(QueryUserListReq) returns(QueryUserListResp) {
+    option (api.post) = "/user/query/list";
   }
   rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
     option (api.post) = "/job/query/list";
