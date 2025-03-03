@@ -39,6 +39,7 @@ struct CreateEblDocx {
 struct SealEblReq {
     1: required string token
     2: required CreateEblDocx ebl
+    3: required i64 sealId
 }
 
 struct SealEblResp {

@@ -82,19 +82,47 @@ struct OperateEblReq {
     1: required string token            // 身份验证Token
     2: required string eblNo            // Ebl ID
     3: required OperationType type           // Ebl 状态转换类型 1 submitEbl 2 approveEbl 3 rejectEbl
+    4: optional i64 sealId
 }
 
 struct OperateEblResp {
-    1: required i64 id
 }
 
 struct UploadSealReq {
     1: required string token            // 身份验证Token
-    2: required list<byte> seal         // Seal
+    2: required CompanySeal seal
+    3: required string originFileName
+}
+
+struct CompanySeal{
+    1: required i64 id
+    2: required string name
+    3: required list<byte> seal
+    4: required string url
+    5: optional i64 created_at
+    6: optional i64 updated_at
+    7: optional i64 deleted_at
+    8: required i64 company_id
 }
 
 struct UploadSealResp {
     1: required i64 id
+}
+
+struct QuerySealReq {
+    1: required string token            // 身份验证Token
+}
+
+struct QuerySealResp {
+    1: required list<CompanySeal> seal         // Seal
+}
+
+struct DeleteSealReq {
+    1: required string token            // 身份验证Token
+    2: required i64 id
+}
+
+struct DeleteSealResp {
 }
 
 struct CheckTokenReq {
@@ -215,6 +243,8 @@ service FabricEbl{
     GetInvoiceResp GetInvoice(1: GetInvoiceReq req)
     GetContractResp GetContract(1: GetContractReq req)
     GetDocumentResp GetDocument(1: GetDocumentReq req)
+    QuerySealResp QuerySeal(1: QuerySealReq req)
+    DeleteSealResp DeleteSeal(1: DeleteSealReq req)
 }
 
 struct Invoice {

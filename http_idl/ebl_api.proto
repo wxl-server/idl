@@ -135,7 +135,6 @@ message OperateEblResp {
 }
 
 message OperateEblData{
-  required int64 id = 1;
 }
 
 message UploadSealReq {
@@ -149,6 +148,30 @@ message UploadSealResp {
 
 message UploadSealData{
   required int64 id = 1;
+}
+
+message QuerySealReq {
+}
+
+message QuerySealResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QuerySealData data = 3;
+}
+
+message QuerySealData{
+  repeated CompanySeal seal_list = 1;
+}
+
+message DeleteSealReq {
+  required int64 id = 1;
+}
+message DeleteSealResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional DeleteSealData data = 3;
+}
+message DeleteSealData{
 }
 
 message CheckTokenReq {
@@ -360,6 +383,12 @@ service EblApi {
   rpc GetDocument(GetDocumentReq) returns(GetDocumentResp) {
     option (api.post) = "/document/get";
   }
+  rpc QuerySeal(QuerySealReq) returns(QuerySealResp) {
+    option (api.get) = "/company/seal/query";
+  }
+  rpc DeleteSeal(DeleteSealReq) returns(DeleteSealResp) {
+    option (api.post) = "/company/seal/delete";
+  }
 }
 
 enum CompanyType {
@@ -568,6 +597,17 @@ message DocumentFilter {
   optional int64 RelatedDate = 3;
   optional string FileHash = 4;
   optional string Name = 5;
+}
+
+message CompanySeal {
+  required int64 id = 1;
+  required string name = 2;
+  required bytes seal = 3;
+  required string url = 4;
+  optional int64 created_at = 5;
+  optional int64 updated_at = 6;
+  optional int64 deleted_at = 7;
+  required int64 company_id = 8;
 }
 
 enum InvoiceType {
