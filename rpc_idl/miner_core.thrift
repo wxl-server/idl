@@ -178,18 +178,18 @@ struct AllowValues {
 }
 
 struct Task {
-  1: required i64 id = 1;
-  2: required i64 job_id = 2;
-  3:  required string name = 3;
-  4:  optional i64 total_records = 4;
-  5:  required TaskStatus status = 5;
-  6:  required User created_by = 6;
-  7:  required i64 created_at = 7;
-  8:  optional i64 time_cost = 8;
-  9:  required list<Rule> rules = 9;
-  10:  required string logic_expression = 10;
-  11:  required i64  limit = 11;
-  12:  optional string extra = 12;
+  1: required i64 id
+  2: required i64 job_id
+  3:  required string name
+  4:  optional i64 total_records
+  5:  required TaskStatus status
+  6:  required User created_by
+  7:  required i64 created_at
+  8:  optional i64 time_cost
+  9:  required list<Rule> rules
+  10:  required string logic_expression
+  11:  required i64  limit
+  12:  optional string extra
 }
 
 struct Rule {
