@@ -82,6 +82,7 @@ struct OperateEblReq {
     1: required string token            // 身份验证Token
     2: required string eblNo            // Ebl ID
     3: required OperationType type           // Ebl 状态转换类型 1 submitEbl 2 approveEbl 3 rejectEbl
+    4: optional i64 sealId
 }
 
 struct OperateEblResp {
