@@ -91,6 +91,7 @@ struct RunTaskReq {
     2: required list<Rule> rules
     3: required string logic_expression
     4: required i64 limit
+    5: required string token
 }
 
 struct RunTaskResp {
