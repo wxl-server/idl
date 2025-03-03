@@ -90,6 +90,7 @@ struct OperateEblResp {
 struct UploadSealReq {
     1: required string token            // 身份验证Token
     2: required CompanySeal seal
+    3: required string originFileName
 }
 
 struct CompanySeal{
