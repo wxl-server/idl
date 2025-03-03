@@ -241,6 +241,8 @@ service FabricEbl{
     GetInvoiceResp GetInvoice(1: GetInvoiceReq req)
     GetContractResp GetContract(1: GetContractReq req)
     GetDocumentResp GetDocument(1: GetDocumentReq req)
+    QuerySealResp QuerySeal(1: QuerySealReq req)
+    DeleteSealResp DeleteSeal(1: DeleteSealReq req)
 }
 
 struct Invoice {
