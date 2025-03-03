@@ -177,7 +177,7 @@ service MinerApi {
     option (api.post) = "/task/query/list";
   }
   rpc RunTask(RunTaskReq) returns(RunTaskResp) {
-    option (api.get) = "/task/run";
+    option (api.post) = "/task/run";
   }
 }
 
