@@ -31,6 +31,19 @@ message SignUpResp {
   optional SignUpData data = 3;
 }
 
+message QueryUserListReq {
+
+}
+message QueryUserListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryUserListData data = 3;
+}
+
+message QueryUserListData {
+  repeated User user_list = 1;
+}
+
 message SignUpData {
   required int64 id = 1;
 }
@@ -76,6 +89,80 @@ message CreateJobData {
   required int64 id = 1;
 }
 
+message DeleteJobReq {
+  required int64 id = 1;
+}
+
+message DeleteJobResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional DeleteJobData data = 3;
+}
+
+message DeleteJobData {
+}
+
+message QueryIndicatorListReq {
+
+}
+
+message QueryIndicatorListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryIndicatorListData data = 3;
+}
+
+message QueryIndicatorListData {
+  repeated FirstLevelIndicator indicators = 1;
+}
+
+message FirstLevelIndicator {
+  required string display_name = 1;
+  repeated SecondLevelIndicator children = 2;
+}
+
+message SecondLevelIndicator {
+  required string factor_code = 1;
+  required string display_name = 2;
+  repeated AllowOperators allow_operators = 3;
+}
+
+message AllowOperators {
+  required string operator_code = 1;
+  required string display_name = 2;
+  required InputElType input_el_type = 3;
+  repeated AllowValues allow_values = 4;
+}
+
+message AllowValues {
+  required string display_name = 1;
+  required string value = 2;
+}
+
+message RunTaskReq {
+  required int64 job_id = 1;
+  repeated Rule rules = 2;
+  required string logic_expression = 3;
+  required int64 limit = 4;
+}
+
+message Rule {
+  required int64 id  = 1;
+  required string factor_code  = 2;
+  required string operator_code  = 3;
+  repeated string value_list  = 4;
+}
+
+message RunTaskResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional RunTaskData data = 3;
+}
+
+message RunTaskData {
+
+}
+
 service MinerApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
@@ -83,12 +170,31 @@ service MinerApi {
   rpc SignUp(SignUpReq) returns(SignUpResp) {
     option (api.post) = "/user/signup";
   }
+  rpc QueryUserList(QueryUserListReq) returns(QueryUserListResp) {
+    option (api.get) = "/user/query/list";
+  }
   rpc QueryJobList(QueryJobListReq) returns(QueryJobListResp) {
     option (api.post) = "/job/query/list";
   }
   rpc CreateJob(CreateJobReq) returns(CreateJobResp) {
     option (api.post) = "/job/create";
   }
+  rpc DeleteJob(DeleteJobReq) returns(DeleteJobResp) {
+    option (api.post) = "/job/delete";
+  }
+  rpc QueryIndicatorList(QueryIndicatorListReq) returns(QueryIndicatorListResp) {
+    option (api.get) = "/indicator/query/list";
+  }
+  rpc RunTask(RunTaskReq) returns(RunTaskResp) {
+    option (api.get) = "/task/run";
+  }
+}
+
+enum InputElType {
+  Unknown = 0;
+  InputTag = 1;
+  Input = 2;
+  Select = 3;
 }
 
 enum Order {
