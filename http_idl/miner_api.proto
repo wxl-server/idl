@@ -174,7 +174,7 @@ service MinerApi {
     option (api.get) = "/indicator/query/list";
   }
   rpc QueryTaskList(QueryTaskListReq) returns(QueryTaskListResp) {
-    option (api.get) = "/task/query/list";
+    option (api.post) = "/task/query/list";
   }
   rpc RunTask(RunTaskReq) returns(RunTaskResp) {
     option (api.get) = "/task/run";
