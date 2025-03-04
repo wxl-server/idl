@@ -116,27 +116,22 @@ message QueryIndicatorListData {
   repeated FirstLevelIndicator indicators = 1;
 }
 
-message FirstLevelIndicator {
-  required string display_name = 1;
-  repeated SecondLevelIndicator children = 2;
+message QueryTaskListReq {
+  required int64 page_num = 1[(api.body)="page_num"];
+  required int64 page_size = 2[(api.body)="page_size"];
+
+  optional int64 job_id = 3[(api.body)="job_id"];
 }
 
-message SecondLevelIndicator {
-  required string factor_code = 1;
-  required string display_name = 2;
-  repeated AllowOperators allow_operators = 3;
+message QueryTaskListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryTaskListData data = 3;
 }
 
-message AllowOperators {
-  required string operator_code = 1;
-  required string display_name = 2;
-  required InputElType input_el_type = 3;
-  repeated AllowValues allow_values = 4;
-}
-
-message AllowValues {
-  required string display_name = 1;
-  required string value = 2;
+message QueryTaskListData {
+  repeated Task task_list = 1;
+  required int64 total = 2;
 }
 
 message RunTaskReq {
@@ -144,13 +139,6 @@ message RunTaskReq {
   repeated Rule rules = 2;
   required string logic_expression = 3;
   required int64 limit = 4;
-}
-
-message Rule {
-  required int64 id  = 1;
-  required string factor_code  = 2;
-  required string operator_code  = 3;
-  repeated string value_list  = 4;
 }
 
 message RunTaskResp {
@@ -185,9 +173,18 @@ service MinerApi {
   rpc QueryIndicatorList(QueryIndicatorListReq) returns(QueryIndicatorListResp) {
     option (api.get) = "/indicator/query/list";
   }
+  rpc QueryTaskList(QueryTaskListReq) returns(QueryTaskListResp) {
+    option (api.post) = "/task/query/list";
+  }
   rpc RunTask(RunTaskReq) returns(RunTaskResp) {
     option (api.get) = "/task/run";
   }
+}
+
+enum TaskStatus {
+  Running = 1;
+  Success = 2;
+  Failed = 3;
 }
 
 enum InputElType {
@@ -227,4 +224,49 @@ message Job {
 message User {
   required int64 id = 1;
   required string email = 2;
+}
+
+message FirstLevelIndicator {
+  required string display_name = 1;
+  repeated SecondLevelIndicator children = 2;
+}
+
+message SecondLevelIndicator {
+  required string factor_code = 1;
+  required string display_name = 2;
+  repeated AllowOperators allow_operators = 3;
+}
+
+message AllowOperators {
+  required string operator_code = 1;
+  required string display_name = 2;
+  required InputElType input_el_type = 3;
+  repeated AllowValues allow_values = 4;
+}
+
+message AllowValues {
+  required string display_name = 1;
+  required string value = 2;
+}
+
+message Task {
+  required int64 id = 1;
+  required int64 job_id = 2;
+  required string name = 3;
+  optional int64 total_records = 4;
+  required TaskStatus status = 5;
+  required User created_by = 6;
+  required int64 created_at = 7;
+  optional int64 time_cost = 8;
+  repeated Rule rules = 9;
+  required string logic_expression = 10;
+  required int64  limit = 11;
+  optional string extra = 12;
+}
+
+message Rule {
+  required int64 id  = 1;
+  required string factor_code  = 2;
+  required string operator_code  = 3;
+  repeated string value_list  = 4;
 }
