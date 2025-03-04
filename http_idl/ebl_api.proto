@@ -409,9 +409,12 @@ enum OperationType {
   Retreat = 4;
   Seal = 5;
   Issue = 6;
-  Accept = 7;
+  AcceptIssue = 7;
   Transfer = 8;
   Redeem = 9;
+  AcceptTransfer = 10;
+  RefuseIssue = 11;
+  RefuseTransfer = 12;
 }
 
 message Company {
