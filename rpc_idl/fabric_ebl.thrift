@@ -449,9 +449,10 @@ enum OperationType {
   Retreat = 4;
   Seal = 5;
   Issue = 6;
-  Accept = 7;
+  AcceptIssue = 7;
   Transfer = 8;
   Redeem = 9;
+  AcceptTransfer = 10;
 }
 
 enum CompanyType {
