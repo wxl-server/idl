@@ -83,6 +83,7 @@ struct OperateEblReq {
     2: required string eblNo            // Ebl ID
     3: required OperationType type           // Ebl 状态转换类型 1 submitEbl 2 approveEbl 3 rejectEbl
     4: optional i64 sealId
+    5: optional i64 transferCompanyId
 }
 
 struct OperateEblResp {

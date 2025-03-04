@@ -125,7 +125,8 @@ message QueryEblListData{
 message OperateEblReq {
   required string eblNo = 1[(api.body)="eblNo"];
   required OperationType type = 2[(api.body)="type"];
-  optional string transferCompanyID = 3[(api.body)="transferCompanyID"];
+  optional int64 transferCompanyID = 3[(api.body)="transferCompanyID"];
+  optional int64 sealId = 4[(api.body)="sealId"];
 }
 
 message OperateEblResp {
@@ -166,11 +167,13 @@ message QuerySealData{
 message DeleteSealReq {
   required int64 id = 1;
 }
+
 message DeleteSealResp {
   required int64 code = 1;
   required string message = 2;
   optional DeleteSealData data = 3;
 }
+
 message DeleteSealData{
 }
 
@@ -288,28 +291,35 @@ message GetInvoiceResp {
   required string message = 2;
   optional GetInvoiceData data = 3;
 }
+
 message GetInvoiceData{
   required Invoice invoice = 1;
 }
+
 message GetContractReq {
   required int64 id = 1;
 }
+
 message GetContractResp {
   required int64 code = 1;
   required string message = 2;
   optional GetContractData data = 3;
 }
+
 message GetContractData{
   required Contract contract = 1;
 }
+
 message GetDocumentReq {
   required int64 id = 1;
 }
+
 message GetDocumentResp {
   required int64 code = 1;
   required string message = 2;
   optional GetDocumentData data = 3;
 }
+
 message GetDocumentData{
   required Document document = 1;
 }
@@ -319,43 +329,33 @@ service EblApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
   }
-
   rpc CreateCompany(CreateCompanyReq) returns(CreateCompanyResp) {
     option (api.post) = "/company/create";
   }
-
   rpc GetUserInfo(GetUserInfoReq) returns(GetUserInfoResp) {
     option (api.get) = "/user/info";
   }
-
   rpc GetCompanyAllList(GetCompanyAllListReq) returns(GetCompanyAllListResp) {
     option (api.get) = "/company/all";
   }
-
   rpc CreateEbl(CreateEblReq) returns(CreateEblResp) {
     option (api.post) = "/ebl/create";
   }
-
   rpc QueryAllEblList(QueryAllEblListReq) returns(QueryAllEblListResp) {
     option (api.post) = "/ebl/all";
   }
-
   rpc QueryEblList(QueryEblListReq) returns(QueryEblListResp) {
     option (api.post) = "/ebl/query";
   }
-
   rpc OperateEbl(OperateEblReq) returns(OperateEblResp) {
     option (api.post) = "/ebl/operate";
   }
-
   rpc UploadSeal(UploadSealReq) returns(UploadSealResp) {
     option (api.post) = "/company/seal/upload";
   }
-
   rpc CheckToken(CheckTokenReq) returns(CheckTokenResp) {
     option (api.post) = "/user/check";
   }
-
   rpc CreateInvoice(CreateInvoiceReq) returns(CreateInvoiceResp) {
     option (api.post) = "/invoice/create";
   }
@@ -492,6 +492,7 @@ message EblFilter {
   required string transferCompanyID = 27; // 原34→27
   required string companyID = 28;         // 原36→28
 }
+
 message EblExtra {
   required string eblNo = 1;
   required string originCompanyID = 2;
