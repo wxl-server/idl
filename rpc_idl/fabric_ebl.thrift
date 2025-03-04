@@ -453,7 +453,8 @@ enum OperationType {
   Transfer = 8;
   Redeem = 9;
   AcceptTransfer = 10;
-  Refuse = 11;
+  RefuseIssue = 11;
+  RefuseTransfer = 12;
 }
 
 enum CompanyType {
