@@ -79,6 +79,15 @@ struct QueryEblListResp {
     3: required string bookmark         // 返回的分页标记，用于继续分页查询
 }
 
+struct QueryEblTransferLogReq {
+    1: required string token            // 身份验证Token
+    2: required string eblNo            // Ebl ID
+}
+
+struct QueryEblTransferLogResp {
+    1: required list<EblTransferLog> eblTransferLogList       // 返回的 Ebl 列表
+}
+
 struct OperateEblReq {
     1: required string token            // 身份验证Token
     2: required string eblNo            // Ebl ID
@@ -361,6 +370,15 @@ struct Ebl {
     36: required string companyID
     37: required string companyName
     38: required list<i64> documentFiles
+}
+
+struct EblTransferLog {
+    1: required string transFerEblNo
+    2: required string transferFromCompanyID
+    3: required string transferFromCompanyName
+    4: required string transferToCompanyID
+    5: required string transferToCompanyName
+    6: required i64 transferTime
 }
 
 struct EblExtra {
