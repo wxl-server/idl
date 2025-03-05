@@ -463,6 +463,7 @@ enum QueryEblType {
   TransferIssue = 2;
   Accept = 3;
 }
+
 enum CompanyType {
     Ship = 1;
     Bank = 2;
