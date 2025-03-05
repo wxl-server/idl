@@ -70,6 +70,7 @@ struct QueryEblListReq {
     2: optional i64 pageSize         // 可选的分页大小，默认值是10
     3: optional string bookmark        // 分页标记，用于后续请求获取更多数据
     4: required EblFilter eblFilter         // 过滤条件
+    5: required QueryEblType type
 }
 
 struct QueryEblListResp {
@@ -78,11 +79,21 @@ struct QueryEblListResp {
     3: required string bookmark         // 返回的分页标记，用于继续分页查询
 }
 
+struct QueryEblTransferLogReq {
+    1: required string token            // 身份验证Token
+    2: required string eblNo            // Ebl ID
+}
+
+struct QueryEblTransferLogResp {
+    1: required list<EblTransferLog> eblTransferLogList       // 返回的 Ebl 列表
+}
+
 struct OperateEblReq {
     1: required string token            // 身份验证Token
     2: required string eblNo            // Ebl ID
     3: required OperationType type           // Ebl 状态转换类型 1 submitEbl 2 approveEbl 3 rejectEbl
     4: optional i64 sealId
+    5: optional i64 transferCompanyId
 }
 
 struct OperateEblResp {
@@ -245,6 +256,7 @@ service FabricEbl{
     GetDocumentResp GetDocument(1: GetDocumentReq req)
     QuerySealResp QuerySeal(1: QuerySealReq req)
     DeleteSealResp DeleteSeal(1: DeleteSealReq req)
+    QueryEblTransferLogResp QueryEblTransferLog(1: QueryEblTransferLogReq req)
 }
 
 struct Invoice {
@@ -361,6 +373,15 @@ struct Ebl {
     38: required list<i64> documentFiles
 }
 
+struct EblTransferLog {
+    1: required string transFerEblNo
+    2: required string transferFromCompanyID
+    3: required string transferFromCompanyName
+    4: required string transferToCompanyID
+    5: required string transferToCompanyName
+    6: required i64 transferTime
+}
+
 struct EblExtra {
     1: required string eblNo
     2: required string originCompanyID
@@ -448,9 +469,18 @@ enum OperationType {
   Retreat = 4;
   Seal = 5;
   Issue = 6;
-  Accept = 7;
+  AcceptIssue = 7;
   Transfer = 8;
   Redeem = 9;
+  AcceptTransfer = 10;
+  RefuseIssue = 11;
+  RefuseTransfer = 12;
+}
+
+enum QueryEblType {
+  Manage = 1;
+  TransferIssue = 2;
+  Accept = 3;
 }
 
 enum CompanyType {

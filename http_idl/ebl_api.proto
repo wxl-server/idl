@@ -108,6 +108,7 @@ message QueryEblListReq {
   required int64 page_size = 1[(api.body)="page_size"];
   required string bookmark = 2[(api.body)="bookmark"];
   required EblFilter ebl = 3[(api.body)="ebl"];
+  required QueryEblType type = 4[(api.body)="type"];
 }
 
 message QueryEblListResp {
@@ -122,10 +123,25 @@ message QueryEblListData{
   required string bookmark = 3;
 }
 
+message QueryEblTransferLogReq {
+  required string eblNo = 1[(api.body)="eblNo"];
+}
+
+message QueryEblTransferLogResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryEblTransferLogData data = 3;
+}
+
+message QueryEblTransferLogData{
+  repeated EblTransferLog ebl_transfer_log_list = 1;
+}
+
 message OperateEblReq {
   required string eblNo = 1[(api.body)="eblNo"];
   required OperationType type = 2[(api.body)="type"];
-  optional string transferCompanyID = 3[(api.body)="transferCompanyID"];
+  optional int64 transferCompanyID = 3[(api.body)="transferCompanyID"];
+  optional int64 sealId = 4[(api.body)="sealId"];
 }
 
 message OperateEblResp {
@@ -166,11 +182,13 @@ message QuerySealData{
 message DeleteSealReq {
   required int64 id = 1;
 }
+
 message DeleteSealResp {
   required int64 code = 1;
   required string message = 2;
   optional DeleteSealData data = 3;
 }
+
 message DeleteSealData{
 }
 
@@ -288,28 +306,35 @@ message GetInvoiceResp {
   required string message = 2;
   optional GetInvoiceData data = 3;
 }
+
 message GetInvoiceData{
   required Invoice invoice = 1;
 }
+
 message GetContractReq {
   required int64 id = 1;
 }
+
 message GetContractResp {
   required int64 code = 1;
   required string message = 2;
   optional GetContractData data = 3;
 }
+
 message GetContractData{
   required Contract contract = 1;
 }
+
 message GetDocumentReq {
   required int64 id = 1;
 }
+
 message GetDocumentResp {
   required int64 code = 1;
   required string message = 2;
   optional GetDocumentData data = 3;
 }
+
 message GetDocumentData{
   required Document document = 1;
 }
@@ -319,43 +344,33 @@ service EblApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
   }
-
   rpc CreateCompany(CreateCompanyReq) returns(CreateCompanyResp) {
     option (api.post) = "/company/create";
   }
-
   rpc GetUserInfo(GetUserInfoReq) returns(GetUserInfoResp) {
     option (api.get) = "/user/info";
   }
-
   rpc GetCompanyAllList(GetCompanyAllListReq) returns(GetCompanyAllListResp) {
     option (api.get) = "/company/all";
   }
-
   rpc CreateEbl(CreateEblReq) returns(CreateEblResp) {
     option (api.post) = "/ebl/create";
   }
-
   rpc QueryAllEblList(QueryAllEblListReq) returns(QueryAllEblListResp) {
     option (api.post) = "/ebl/all";
   }
-
   rpc QueryEblList(QueryEblListReq) returns(QueryEblListResp) {
     option (api.post) = "/ebl/query";
   }
-
   rpc OperateEbl(OperateEblReq) returns(OperateEblResp) {
     option (api.post) = "/ebl/operate";
   }
-
   rpc UploadSeal(UploadSealReq) returns(UploadSealResp) {
     option (api.post) = "/company/seal/upload";
   }
-
   rpc CheckToken(CheckTokenReq) returns(CheckTokenResp) {
     option (api.post) = "/user/check";
   }
-
   rpc CreateInvoice(CreateInvoiceReq) returns(CreateInvoiceResp) {
     option (api.post) = "/invoice/create";
   }
@@ -389,6 +404,9 @@ service EblApi {
   rpc DeleteSeal(DeleteSealReq) returns(DeleteSealResp) {
     option (api.post) = "/company/seal/delete";
   }
+  rpc QueryEblTransferLog(QueryEblTransferLogReq) returns(QueryEblTransferLogResp) {
+    option (api.post) = "/ebl/transfer/log";
+  }
 }
 
 enum CompanyType {
@@ -409,9 +427,18 @@ enum OperationType {
   Retreat = 4;
   Seal = 5;
   Issue = 6;
-  Accept = 7;
+  AcceptIssue = 7;
   Transfer = 8;
   Redeem = 9;
+  AcceptTransfer = 10;
+  RefuseIssue = 11;
+  RefuseTransfer = 12;
+}
+
+enum QueryEblType {
+  Manage = 1;
+  TransferIssue = 2;
+  Accept = 3;
 }
 
 message Company {
@@ -462,6 +489,23 @@ message Ebl {
   repeated int64 documentFiles = 38;
 }
 
+//    struct EblTransferLog {
+//1: required string transFerEblNo
+//    2: required string transferFromCompanyID
+//3: required string transferFromCompanyName
+//    4: required string transferToCompanyID
+//5: required string transferToCompanyName
+//    6: required i64 transferTime
+//    }
+message EblTransferLog {
+  required string transFerEblNo = 1;
+  required string transferFromCompanyID = 2;
+  required string transferFromCompanyName = 3;
+  required string transferToCompanyID = 4;
+  required string transferToCompanyName = 5;
+  required int64 transferTime = 6;
+}
+
 message EblFilter {
   required string eblNo = 1;
   required string originCompanyID = 2;
@@ -492,6 +536,7 @@ message EblFilter {
   required string transferCompanyID = 27; // 原34→27
   required string companyID = 28;         // 原36→28
 }
+
 message EblExtra {
   required string eblNo = 1;
   required string originCompanyID = 2;
