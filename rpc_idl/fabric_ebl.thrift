@@ -256,6 +256,7 @@ service FabricEbl{
     GetDocumentResp GetDocument(1: GetDocumentReq req)
     QuerySealResp QuerySeal(1: QuerySealReq req)
     DeleteSealResp DeleteSeal(1: DeleteSealReq req)
+    QueryEblTransferLogResp QueryEblTransferLog(1: QueryEblTransferLogReq req)
 }
 
 struct Invoice {

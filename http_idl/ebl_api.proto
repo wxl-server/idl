@@ -123,6 +123,20 @@ message QueryEblListData{
   required string bookmark = 3;
 }
 
+message QueryEblTransferLogReq {
+  required string eblNo = 1[(api.body)="eblNo"];
+}
+
+message QueryEblTransferLogResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryEblTransferLogData data = 3;
+}
+
+message QueryEblTransferLogData{
+  repeated EblTransferLog ebl_transfer_log_list = 1;
+}
+
 message OperateEblReq {
   required string eblNo = 1[(api.body)="eblNo"];
   required OperationType type = 2[(api.body)="type"];
@@ -390,6 +404,9 @@ service EblApi {
   rpc DeleteSeal(DeleteSealReq) returns(DeleteSealResp) {
     option (api.post) = "/company/seal/delete";
   }
+  rpc QueryEblTransferLog(QueryEblTransferLogReq) returns(QueryEblTransferLogResp) {
+    option (api.post) = "/ebl/transfer/log";
+  }
 }
 
 enum CompanyType {
@@ -470,6 +487,23 @@ message Ebl {
   required string companyID = 36;
   required string companyName = 37;
   repeated int64 documentFiles = 38;
+}
+
+//    struct EblTransferLog {
+//1: required string transFerEblNo
+//    2: required string transferFromCompanyID
+//3: required string transferFromCompanyName
+//    4: required string transferToCompanyID
+//5: required string transferToCompanyName
+//    6: required i64 transferTime
+//    }
+message EblTransferLog {
+  required string transFerEblNo = 1;
+  required string transferFromCompanyID = 2;
+  required string transferFromCompanyName = 3;
+  required string transferToCompanyID = 4;
+  required string transferToCompanyName = 5;
+  required int64 transferTime = 6;
 }
 
 message EblFilter {
