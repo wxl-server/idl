@@ -380,6 +380,7 @@ struct EblTransferLog {
     4: required string transferToCompanyID
     5: required string transferToCompanyName
     6: required i64 transferTime
+    7: required string transferType
 }
 
 struct EblExtra {

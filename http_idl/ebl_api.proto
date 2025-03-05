@@ -489,14 +489,6 @@ message Ebl {
   repeated int64 documentFiles = 38;
 }
 
-//    struct EblTransferLog {
-//1: required string transFerEblNo
-//    2: required string transferFromCompanyID
-//3: required string transferFromCompanyName
-//    4: required string transferToCompanyID
-//5: required string transferToCompanyName
-//    6: required i64 transferTime
-//    }
 message EblTransferLog {
   required string transFerEblNo = 1;
   required string transferFromCompanyID = 2;
@@ -504,6 +496,7 @@ message EblTransferLog {
   required string transferToCompanyID = 4;
   required string transferToCompanyName = 5;
   required int64 transferTime = 6;
+  required string transferType = 7;
 }
 
 message EblFilter {
