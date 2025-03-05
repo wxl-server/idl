@@ -290,6 +290,7 @@ service FabricEbl{
     DeleteSealResp DeleteSeal(1: DeleteSealReq req)
     QueryEblTransferLogResp QueryEblTransferLog(1: QueryEblTransferLogReq req)
     CreateCompanyUserResp CreateCompanyUser(1: CreateCompanyUserReq req)
+    QueryCompanyUserListResp QueryCompanyUserList(1: QueryCompanyUserListReq req)
 }
 
 struct Invoice {

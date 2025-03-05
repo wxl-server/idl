@@ -452,6 +452,9 @@ service EblApi {
   rpc CreateCompanyUser(CreateCompanyUserReq) returns(CreateCompanyUserResp) {
     option (api.post) = "/company/user/create";
   }
+  rpc QueryCompanyUserList(QueryCompanyUserListReq) returns(QueryCompanyUserListResp) {
+    option (api.post) = "/company/user/query";
+  }
 }
 
 enum CompanyType {
