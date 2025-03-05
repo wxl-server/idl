@@ -70,6 +70,7 @@ struct QueryEblListReq {
     2: optional i64 pageSize         // 可选的分页大小，默认值是10
     3: optional string bookmark        // 分页标记，用于后续请求获取更多数据
     4: required EblFilter eblFilter         // 过滤条件
+    5: required QueryEblType type
 }
 
 struct QueryEblListResp {
@@ -457,6 +458,11 @@ enum OperationType {
   RefuseTransfer = 12;
 }
 
+enum QueryEblType {
+  Manage = 1;
+  TransferIssue = 2;
+  Accept = 3;
+}
 enum CompanyType {
     Ship = 1;
     Bank = 2;

@@ -108,6 +108,7 @@ message QueryEblListReq {
   required int64 page_size = 1[(api.body)="page_size"];
   required string bookmark = 2[(api.body)="bookmark"];
   required EblFilter ebl = 3[(api.body)="ebl"];
+  required QueryEblType type = 4[(api.body)="type"];
 }
 
 message QueryEblListResp {
@@ -415,6 +416,12 @@ enum OperationType {
   AcceptTransfer = 10;
   RefuseIssue = 11;
   RefuseTransfer = 12;
+}
+
+enum QueryEblType {
+  Manage = 1;
+  TransferIssue = 2;
+  Accept = 3;
 }
 
 message Company {
