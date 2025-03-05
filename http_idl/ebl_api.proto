@@ -57,6 +57,31 @@ message CreateCompanyUserData{
   required int64 id = 1;
 }
 
+message QueryCompanyUserListReq {
+  required int64 page_size = 1[(api.body)="page_size"];
+  required int64 page_num = 2[(api.body)="page_num"];
+}
+
+message QueryCompanyUserListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryCompanyUserListData data = 3;
+}
+
+message QueryCompanyUserListData{
+  repeated CompanyUser company_user_list = 1;
+  required int64 total = 2;
+}
+
+message CompanyUser {
+  required int64 id = 1;
+  required string email = 2;
+  required string name = 3;
+  required UserType user_type = 4;
+  required int64  created_at = 5;
+  required int64 updated_at = 6;
+}
+
 message GetUserInfoReq {
 }
 

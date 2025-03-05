@@ -25,6 +25,26 @@ struct CreateCompanyUserResp {
     1: required i64 id
 }
 
+struct QueryCompanyUserListReq {
+    1: required string token
+    2: required i64 pageSize
+    3: required i64 pageNum
+}
+
+struct QueryCompanyUserListResp {
+    1: required list<CompanyUser> companyUserList
+    2: required i64 total
+}
+
+struct CompanyUser {
+    1: required i64 id
+    2: required string email
+    3: required string name
+    4: required UserType user_type
+    5: required i64 created_at
+    6: required i64 updated_at
+}
+
 struct LoginReq {
     1: required string email
     2: required string password
