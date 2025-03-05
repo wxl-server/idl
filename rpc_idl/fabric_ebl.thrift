@@ -13,6 +13,18 @@ struct CreateCompanyResp {
     1: required i64 id
 }
 
+struct CreateCompanyUserReq {
+    1: required string email
+    2: required string password
+    3: required string name
+    4: required UserType type
+    5: required string token
+}
+
+struct CreateCompanyUserResp {
+    1: required i64 id
+}
+
 struct LoginReq {
     1: required string email
     2: required string password
@@ -257,6 +269,7 @@ service FabricEbl{
     QuerySealResp QuerySeal(1: QuerySealReq req)
     DeleteSealResp DeleteSeal(1: DeleteSealReq req)
     QueryEblTransferLogResp QueryEblTransferLog(1: QueryEblTransferLogReq req)
+    CreateCompanyUserResp CreateCompanyUser(1: CreateCompanyUserReq req)
 }
 
 struct Invoice {
@@ -492,7 +505,10 @@ enum CompanyType {
 
 enum UserType {
     Admin = 1;
-    User = 2;
+    EblMaker = 2;
+    EblChecker = 3;
+    EblSealer = 4;
+    CompanyUser = 5;
 }
 
 enum InvoiceType {

@@ -40,6 +40,23 @@ message CreateCompanyData{
   required int64 id = 1;
 }
 
+message CreateCompanyUserReq {
+  required string email = 1[(api.body)="email"];
+  required string password = 2[(api.body)="password"];
+  required string name = 3[(api.body)="name"];
+  required UserType user_type = 4[(api.body)="user_type"];
+}
+
+message CreateCompanyUserResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateCompanyUserData data = 3;
+}
+
+message CreateCompanyUserData{
+  required int64 id = 1;
+}
+
 message GetUserInfoReq {
 }
 
@@ -407,6 +424,9 @@ service EblApi {
   rpc QueryEblTransferLog(QueryEblTransferLogReq) returns(QueryEblTransferLogResp) {
     option (api.post) = "/ebl/transfer/log";
   }
+  rpc CreateCompanyUser(CreateCompanyUserReq) returns(CreateCompanyUserResp) {
+    option (api.post) = "/company/user/create";
+  }
 }
 
 enum CompanyType {
@@ -417,7 +437,10 @@ enum CompanyType {
 
 enum UserType {
   Admin = 1;
-  User = 2;
+  EblMaker = 2;
+  EblChecker = 3;
+  EblSealer = 4;
+  CompanyUser = 5;
 }
 
 enum OperationType {
