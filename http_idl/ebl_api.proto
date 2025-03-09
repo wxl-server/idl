@@ -40,6 +40,48 @@ message CreateCompanyData{
   required int64 id = 1;
 }
 
+message CreateCompanyUserReq {
+  required string email = 1[(api.body)="email"];
+  required string password = 2[(api.body)="password"];
+  required string name = 3[(api.body)="name"];
+  required UserType user_type = 4[(api.body)="user_type"];
+}
+
+message CreateCompanyUserResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional CreateCompanyUserData data = 3;
+}
+
+message CreateCompanyUserData{
+  required int64 id = 1;
+}
+
+message QueryCompanyUserListReq {
+  required int64 page_size = 1[(api.body)="page_size"];
+  required int64 page_num = 2[(api.body)="page_num"];
+}
+
+message QueryCompanyUserListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryCompanyUserListData data = 3;
+}
+
+message QueryCompanyUserListData{
+  repeated CompanyUser company_user_list = 1;
+  required int64 total = 2;
+}
+
+message CompanyUser {
+  required int64 id = 1;
+  required string email = 2;
+  required string name = 3;
+  required UserType user_type = 4;
+  required int64  created_at = 5;
+  required int64 updated_at = 6;
+}
+
 message GetUserInfoReq {
 }
 
@@ -407,6 +449,12 @@ service EblApi {
   rpc QueryEblTransferLog(QueryEblTransferLogReq) returns(QueryEblTransferLogResp) {
     option (api.post) = "/ebl/transfer/log";
   }
+  rpc CreateCompanyUser(CreateCompanyUserReq) returns(CreateCompanyUserResp) {
+    option (api.post) = "/company/user/create";
+  }
+  rpc QueryCompanyUserList(QueryCompanyUserListReq) returns(QueryCompanyUserListResp) {
+    option (api.post) = "/company/user/query";
+  }
 }
 
 enum CompanyType {
@@ -417,7 +465,10 @@ enum CompanyType {
 
 enum UserType {
   Admin = 1;
-  User = 2;
+  EblMaker = 2;
+  EblChecker = 3;
+  EblSealer = 4;
+  CompanyUser = 5;
 }
 
 enum OperationType {
@@ -489,14 +540,6 @@ message Ebl {
   repeated int64 documentFiles = 38;
 }
 
-//    struct EblTransferLog {
-//1: required string transFerEblNo
-//    2: required string transferFromCompanyID
-//3: required string transferFromCompanyName
-//    4: required string transferToCompanyID
-//5: required string transferToCompanyName
-//    6: required i64 transferTime
-//    }
 message EblTransferLog {
   required string transFerEblNo = 1;
   required string transferFromCompanyID = 2;
@@ -504,6 +547,7 @@ message EblTransferLog {
   required string transferToCompanyID = 4;
   required string transferToCompanyName = 5;
   required int64 transferTime = 6;
+  required string transferType = 7;
 }
 
 message EblFilter {
