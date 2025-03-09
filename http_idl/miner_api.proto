@@ -120,7 +120,8 @@ message QueryTaskListReq {
   required int64 page_num = 1[(api.body)="page_num"];
   required int64 page_size = 2[(api.body)="page_size"];
 
-  optional int64 job_id = 3[(api.body)="job_id"];
+  optional int64 id = 3[(api.body)="id"];
+  optional int64 job_id = 4[(api.body)="job_id"];
 }
 
 message QueryTaskListResp {

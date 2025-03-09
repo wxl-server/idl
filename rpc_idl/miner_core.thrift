@@ -78,7 +78,8 @@ struct QueryTaskListReq {
   1: required i64 page_num
   2: required i64 page_size
 
-  3: optional i64 job_id
+  3: optional i64 id
+  4: optional i64 job_id
 }
 
 struct QueryTaskListResp {
