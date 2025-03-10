@@ -78,7 +78,8 @@ struct QueryTaskListReq {
   1: required i64 page_num
   2: required i64 page_size
 
-  3: optional i64 job_id
+  3: optional i64 id
+  4: optional i64 job_id
 }
 
 struct QueryTaskListResp {
@@ -97,6 +98,18 @@ struct RunTaskReq {
 struct RunTaskResp {
 }
 
+struct QueryTaskResultListReq{
+    1: required i64 page_num
+    2: required i64 page_size
+    3: required i64 task_id
+}
+
+struct QueryTaskResultListResp{
+    1: required list<TaskResult> result_list
+    2: required i64 total
+}
+
+
 service MinerCore{
     SignUpResp SignUp(1: SignUpReq req)
     LoginResp Login(1: LoginReq req)
@@ -107,6 +120,7 @@ service MinerCore{
     QueryIndicatorListResp QueryIndicatorList(1: QueryIndicatorListReq req)
     QueryTaskListResp QueryTaskList(1: QueryTaskListReq req)
     RunTaskResp RunTask(1: RunTaskReq req)
+    QueryTaskResultListResp QueryTaskResultList(1: QueryTaskResultListReq req)
 }
 
 enum InputElType {
@@ -198,4 +212,28 @@ struct Rule {
   2: required string factor_code
   3: required string operator_code
   4: required list<string> value_list
+}
+
+struct TaskResult {
+  1: required i64 task_id
+  2: required double es_score
+  3: required Product product
+}
+
+struct Product {
+  1: required i64 product_id
+  2: required string product_name
+  3: required string image_urls
+  4: required string shop_image_url
+  5: required i64 shop_id
+  6: required i64 status
+  7: required string shop_name
+  8: optional i64 brand_id
+  9: optional string brand_name
+  10: optional i64 is_brand_authorized
+  11: optional i64 logo_model_brand_id
+  12: optional string logo_model_brand_name
+  13: optional i64 image_model_brand_id
+  14: optional string image_model_brand_name
+  15: optional string extra
 }

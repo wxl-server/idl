@@ -120,7 +120,8 @@ message QueryTaskListReq {
   required int64 page_num = 1[(api.body)="page_num"];
   required int64 page_size = 2[(api.body)="page_size"];
 
-  optional int64 job_id = 3[(api.body)="job_id"];
+  optional int64 id = 3[(api.body)="id"];
+  optional int64 job_id = 4[(api.body)="job_id"];
 }
 
 message QueryTaskListResp {
@@ -151,6 +152,24 @@ message RunTaskData {
 
 }
 
+message QueryTaskResultListReq {
+  required int64 page_num = 1[(api.body)="page_num"];
+  required int64 page_size = 2[(api.body)="page_size"];
+
+  required int64 task_id = 3[(api.body)="task_id"];
+}
+
+message QueryTaskResultListResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryTaskResultListData data = 3;
+}
+
+message QueryTaskResultListData {
+  repeated TaskResult task_result_list = 1;
+  required int64 total = 2;
+}
+
 service MinerApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
@@ -177,7 +196,10 @@ service MinerApi {
     option (api.post) = "/task/query/list";
   }
   rpc RunTask(RunTaskReq) returns(RunTaskResp) {
-    option (api.get) = "/task/run";
+    option (api.post) = "/task/run";
+  }
+  rpc QueryTaskResultList(QueryTaskResultListReq) returns(QueryTaskResultListResp) {
+    option (api.post) = "/task_result/query/list";
   }
 }
 
@@ -269,4 +291,28 @@ message Rule {
   required string factor_code  = 2;
   required string operator_code  = 3;
   repeated string value_list  = 4;
+}
+
+message TaskResult {
+  required int64 task_id = 1;
+  required double es_score = 2;
+  required Product product = 3;
+}
+
+message Product {
+  required int64 product_id = 1;
+  required string product_name = 2;
+  required string image_urls = 3;
+  required string shop_image_url = 4;
+  required int64 shop_id = 5;
+  required int64 status = 6;
+  required string shop_name = 7;
+  optional int64 brand_id = 8;
+  optional string brand_name = 9;
+  optional int64 is_brand_authorized = 10;
+  optional int64 logo_model_brand_id = 11;
+  optional string logo_model_brand_name = 12;
+  optional int64 image_model_brand_id = 13;
+  optional string image_model_brand_name = 14;
+  optional string extra = 15;
 }
