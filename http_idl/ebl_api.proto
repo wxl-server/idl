@@ -69,11 +69,11 @@ message QueryCompanyUserListResp {
 }
 
 message QueryCompanyUserListData{
-  repeated CompanyUser company_user_list = 1;
+  repeated User company_user_list = 1;
   required int64 total = 2;
 }
 
-message CompanyUser {
+message User {
   required int64 id = 1;
   required string email = 2;
   required string name = 3;
