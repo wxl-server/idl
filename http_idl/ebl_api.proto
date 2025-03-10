@@ -79,6 +79,9 @@ service EblApi {
   rpc QueryCompanyUserList(QueryCompanyUserListReq) returns(QueryCompanyUserListResp) {
     option (api.post) = "/company/user/query";
   }
+  rpc QueryEblDetail(QueryEblDetailReq) returns(QueryEblDetailResp) {
+    option (api.post) = "/ebl/detail";
+  }
 }
 
 message LoginReq {
