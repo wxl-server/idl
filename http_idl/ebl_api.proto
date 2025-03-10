@@ -6,6 +6,81 @@ option go_package = "ebl_api";
 
 import "api.proto";
 
+service EblApi {
+  rpc Login(LoginReq) returns(LoginResp) {
+    option (api.post) = "/user/login";
+  }
+  rpc CreateCompany(CreateCompanyReq) returns(CreateCompanyResp) {
+    option (api.post) = "/company/create";
+  }
+  rpc GetUserInfo(GetUserInfoReq) returns(GetUserInfoResp) {
+    option (api.get) = "/user/info";
+  }
+  rpc GetCompanyAllList(GetCompanyAllListReq) returns(GetCompanyAllListResp) {
+    option (api.get) = "/company/all";
+  }
+  rpc CreateEbl(CreateEblReq) returns(CreateEblResp) {
+    option (api.post) = "/ebl/create";
+  }
+  rpc QueryAllEblList(QueryAllEblListReq) returns(QueryAllEblListResp) {
+    option (api.post) = "/ebl/all";
+  }
+  rpc QueryEblList(QueryEblListReq) returns(QueryEblListResp) {
+    option (api.post) = "/ebl/query";
+  }
+  rpc OperateEbl(OperateEblReq) returns(OperateEblResp) {
+    option (api.post) = "/ebl/operate";
+  }
+  rpc UploadSeal(UploadSealReq) returns(UploadSealResp) {
+    option (api.post) = "/company/seal/upload";
+  }
+  rpc CheckToken(CheckTokenReq) returns(CheckTokenResp) {
+    option (api.post) = "/user/check";
+  }
+  rpc CreateInvoice(CreateInvoiceReq) returns(CreateInvoiceResp) {
+    option (api.post) = "/invoice/create";
+  }
+  rpc CreateContract(CreateContractReq) returns(CreateContractResp) {
+    option (api.post) = "/contract/create";
+  }
+  rpc CreateDocument(CreateDocumentReq) returns(CreateDocumentResp) {
+    option (api.post) = "/document/create";
+  }
+  rpc QueryInvoiceList(QueryInvoiceListReq) returns(QueryInvoiceListResp) {
+    option (api.post) = "/invoice/query";
+  }
+  rpc QueryContractList(QueryContractListReq) returns(QueryContractListResp) {
+    option (api.post) = "/contract/query";
+  }
+  rpc QueryDocumentList(QueryDocumentListReq) returns(QueryDocumentListResp) {
+    option (api.post) = "/document/query";
+  }
+  rpc GetInvoice(GetInvoiceReq) returns(GetInvoiceResp) {
+    option (api.post) = "/invoice/get";
+  }
+  rpc GetContract(GetContractReq) returns(GetContractResp) {
+    option (api.post) = "/contract/get";
+  }
+  rpc GetDocument(GetDocumentReq) returns(GetDocumentResp) {
+    option (api.post) = "/document/get";
+  }
+  rpc QuerySeal(QuerySealReq) returns(QuerySealResp) {
+    option (api.get) = "/company/seal/query";
+  }
+  rpc DeleteSeal(DeleteSealReq) returns(DeleteSealResp) {
+    option (api.post) = "/company/seal/delete";
+  }
+  rpc QueryEblTransferLog(QueryEblTransferLogReq) returns(QueryEblTransferLogResp) {
+    option (api.post) = "/ebl/transfer/log";
+  }
+  rpc CreateCompanyUser(CreateCompanyUserReq) returns(CreateCompanyUserResp) {
+    option (api.post) = "/company/user/create";
+  }
+  rpc QueryCompanyUserList(QueryCompanyUserListReq) returns(QueryCompanyUserListResp) {
+    option (api.post) = "/company/user/query";
+  }
+}
+
 message LoginReq {
   required string email = 1[(api.body)="email"];
   required string password = 2[(api.body)="password"];
@@ -195,6 +270,20 @@ message OperateEblResp {
 message OperateEblData{
 }
 
+message QueryEblDetailReq {
+  required string eblNo = 1[(api.body)="eblNo"];
+}
+
+message QueryEblDetailResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional QueryEblDetailData data = 3;
+}
+
+message QueryEblDetailData{
+  required EblExtra ebl = 1;
+}
+
 message UploadSealReq {
 }
 
@@ -379,82 +468,6 @@ message GetDocumentResp {
 
 message GetDocumentData{
   required Document document = 1;
-}
-
-service EblApi {
-
-  rpc Login(LoginReq) returns(LoginResp) {
-    option (api.post) = "/user/login";
-  }
-  rpc CreateCompany(CreateCompanyReq) returns(CreateCompanyResp) {
-    option (api.post) = "/company/create";
-  }
-  rpc GetUserInfo(GetUserInfoReq) returns(GetUserInfoResp) {
-    option (api.get) = "/user/info";
-  }
-  rpc GetCompanyAllList(GetCompanyAllListReq) returns(GetCompanyAllListResp) {
-    option (api.get) = "/company/all";
-  }
-  rpc CreateEbl(CreateEblReq) returns(CreateEblResp) {
-    option (api.post) = "/ebl/create";
-  }
-  rpc QueryAllEblList(QueryAllEblListReq) returns(QueryAllEblListResp) {
-    option (api.post) = "/ebl/all";
-  }
-  rpc QueryEblList(QueryEblListReq) returns(QueryEblListResp) {
-    option (api.post) = "/ebl/query";
-  }
-  rpc OperateEbl(OperateEblReq) returns(OperateEblResp) {
-    option (api.post) = "/ebl/operate";
-  }
-  rpc UploadSeal(UploadSealReq) returns(UploadSealResp) {
-    option (api.post) = "/company/seal/upload";
-  }
-  rpc CheckToken(CheckTokenReq) returns(CheckTokenResp) {
-    option (api.post) = "/user/check";
-  }
-  rpc CreateInvoice(CreateInvoiceReq) returns(CreateInvoiceResp) {
-    option (api.post) = "/invoice/create";
-  }
-  rpc CreateContract(CreateContractReq) returns(CreateContractResp) {
-    option (api.post) = "/contract/create";
-  }
-  rpc CreateDocument(CreateDocumentReq) returns(CreateDocumentResp) {
-    option (api.post) = "/document/create";
-  }
-  rpc QueryInvoiceList(QueryInvoiceListReq) returns(QueryInvoiceListResp) {
-    option (api.post) = "/invoice/query";
-  }
-  rpc QueryContractList(QueryContractListReq) returns(QueryContractListResp) {
-    option (api.post) = "/contract/query";
-  }
-  rpc QueryDocumentList(QueryDocumentListReq) returns(QueryDocumentListResp) {
-    option (api.post) = "/document/query";
-  }
-  rpc GetInvoice(GetInvoiceReq) returns(GetInvoiceResp) {
-    option (api.post) = "/invoice/get";
-  }
-  rpc GetContract(GetContractReq) returns(GetContractResp) {
-    option (api.post) = "/contract/get";
-  }
-  rpc GetDocument(GetDocumentReq) returns(GetDocumentResp) {
-    option (api.post) = "/document/get";
-  }
-  rpc QuerySeal(QuerySealReq) returns(QuerySealResp) {
-    option (api.get) = "/company/seal/query";
-  }
-  rpc DeleteSeal(DeleteSealReq) returns(DeleteSealResp) {
-    option (api.post) = "/company/seal/delete";
-  }
-  rpc QueryEblTransferLog(QueryEblTransferLogReq) returns(QueryEblTransferLogResp) {
-    option (api.post) = "/ebl/transfer/log";
-  }
-  rpc CreateCompanyUser(CreateCompanyUserReq) returns(CreateCompanyUserResp) {
-    option (api.post) = "/company/user/create";
-  }
-  rpc QueryCompanyUserList(QueryCompanyUserListReq) returns(QueryCompanyUserListResp) {
-    option (api.post) = "/company/user/query";
-  }
 }
 
 enum CompanyType {
