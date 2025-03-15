@@ -223,7 +223,7 @@ struct TaskResult {
 struct Product {
   1: required i64 product_id
   2: required string product_name
-  3: required string image_urls
+  3: required list<string> image_urls
   4: required string shop_image_url
   5: required i64 shop_id
   6: required i64 status

@@ -302,7 +302,7 @@ message TaskResult {
 message Product {
   required int64 product_id = 1;
   required string product_name = 2;
-  required string image_urls = 3;
+  repeated string image_urls = 3;
   required string shop_image_url = 4;
   required int64 shop_id = 5;
   required int64 status = 6;
