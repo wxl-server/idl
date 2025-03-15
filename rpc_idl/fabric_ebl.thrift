@@ -1,5 +1,33 @@
 namespace go fabric_ebl
 
+service FabricEbl{
+    CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
+    LoginResp Login(1: LoginReq req)
+    GetUserInfoResp GetUserInfo(1: GetUserInfoReq req)
+    GetCompanyAllListResp GetCompanyAllList(1: GetCompanyAllListReq req)
+    CreateEblResp CreateEbl(1: CreateEblReq req)
+    QueryAllEblListResp QueryAllEblList(1: QueryAllEblListReq req)
+    QueryEblListResp QueryEblList(1: QueryEblListReq req)
+    OperateEblResp OperateEbl(1: OperateEblReq req)
+    UploadSealResp UploadSeal(1: UploadSealReq req)
+    CheckTokenResp CheckToken(1: CheckTokenReq req)
+    CreateInvoiceResp CreateInvoice(1: CreateInvoiceReq req)
+    CreateContractResp CreateContract(1: CreateContractReq req)
+    CreateDocumentResp CreateDocument(1: CreateDocumentReq req)
+    QueryInvoiceListResp QueryInvoiceList(1: QueryInvoiceListReq req)
+    QueryContractListResp QueryContractList(1: QueryContractListReq req)
+    QueryDocumentListResp QueryDocumentList(1: QueryDocumentListReq req)
+    GetInvoiceResp GetInvoice(1: GetInvoiceReq req)
+    GetContractResp GetContract(1: GetContractReq req)
+    GetDocumentResp GetDocument(1: GetDocumentReq req)
+    QuerySealResp QuerySeal(1: QuerySealReq req)
+    DeleteSealResp DeleteSeal(1: DeleteSealReq req)
+    QueryEblTransferLogResp QueryEblTransferLog(1: QueryEblTransferLogReq req)
+    CreateCompanyUserResp CreateCompanyUser(1: CreateCompanyUserReq req)
+    QueryCompanyUserListResp QueryCompanyUserList(1: QueryCompanyUserListReq req)
+    QueryEblDetailResp QueryEblDetail(1: QueryEblDetailReq req)
+}
+
 struct CreateCompanyReq {
     1: required string company_code
     2: required string company_name
@@ -129,6 +157,15 @@ struct OperateEblReq {
 }
 
 struct OperateEblResp {
+}
+
+struct QueryEblDetailReq {
+    1: required string token            // 身份验证Token
+    2: required string eblNo            // Ebl ID
+}
+
+struct QueryEblDetailResp {
+    1: required EblExtra ebl
 }
 
 struct UploadSealReq {
@@ -264,33 +301,6 @@ struct GetDocumentReq {
 
 struct GetDocumentResp {
     1: required Document document
-}
-
-service FabricEbl{
-    CreateCompanyResp CreateCompany(1: CreateCompanyReq req)
-    LoginResp Login(1: LoginReq req)
-    GetUserInfoResp GetUserInfo(1: GetUserInfoReq req)
-    GetCompanyAllListResp GetCompanyAllList(1: GetCompanyAllListReq req)
-    CreateEblResp CreateEbl(1: CreateEblReq req)
-    QueryAllEblListResp QueryAllEblList(1: QueryAllEblListReq req)
-    QueryEblListResp QueryEblList(1: QueryEblListReq req)
-    OperateEblResp OperateEbl(1: OperateEblReq req)
-    UploadSealResp UploadSeal(1: UploadSealReq req)
-    CheckTokenResp CheckToken(1: CheckTokenReq req)
-    CreateInvoiceResp CreateInvoice(1: CreateInvoiceReq req)
-    CreateContractResp CreateContract(1: CreateContractReq req)
-    CreateDocumentResp CreateDocument(1: CreateDocumentReq req)
-    QueryInvoiceListResp QueryInvoiceList(1: QueryInvoiceListReq req)
-    QueryContractListResp QueryContractList(1: QueryContractListReq req)
-    QueryDocumentListResp QueryDocumentList(1: QueryDocumentListReq req)
-    GetInvoiceResp GetInvoice(1: GetInvoiceReq req)
-    GetContractResp GetContract(1: GetContractReq req)
-    GetDocumentResp GetDocument(1: GetDocumentReq req)
-    QuerySealResp QuerySeal(1: QuerySealReq req)
-    DeleteSealResp DeleteSeal(1: DeleteSealReq req)
-    QueryEblTransferLogResp QueryEblTransferLog(1: QueryEblTransferLogReq req)
-    CreateCompanyUserResp CreateCompanyUser(1: CreateCompanyUserReq req)
-    QueryCompanyUserListResp QueryCompanyUserList(1: QueryCompanyUserListReq req)
 }
 
 struct Invoice {
