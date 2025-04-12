@@ -5,6 +5,8 @@ struct UpdateMockProducerQpsReq {
     2: optional i64 product_shop_info_qps
     3: optional i64 product_logo_model_info_qps
     4: optional i64 product_image_model_info_qps
+    5: optional bool set_producer
+    6: optional bool set_consumer
 }
 
 struct UpdateMockProducerQpsResp {
