@@ -170,6 +170,22 @@ message QueryTaskResultListData {
   required int64 total = 2;
 }
 
+message UpdateMockProducerQpsReq {
+  optional int64 product_base_info_qps = 1[(api.body)="product_base_info_qps"];
+  optional int64 product_shop_info_qps = 2[(api.body)="product_shop_info_qps"];
+  optional int64 product_logo_model_info_qps = 3[(api.body)="product_logo_model_info_qps"];
+  optional int64 product_image_model_info_qps = 4[(api.body)="product_image_model_info_qps"];
+}
+
+message UpdateMockProducerQpsResp {
+  required int64 code = 1;
+  required string message = 2;
+  optional UpdateMockProducerQpsData data = 3;
+}
+
+message UpdateMockProducerQpsData {
+}
+
 service MinerApi {
   rpc Login(LoginReq) returns(LoginResp) {
     option (api.post) = "/user/login";
@@ -200,6 +216,9 @@ service MinerApi {
   }
   rpc QueryTaskResultList(QueryTaskResultListReq) returns(QueryTaskResultListResp) {
     option (api.post) = "/task_result/query/list";
+  }
+  rpc UpdateMockProducerQps(UpdateMockProducerQpsReq) returns(UpdateMockProducerQpsResp) {
+    option (api.post) = "/mock_producer_qps/update";
   }
 }
 
