@@ -8,6 +8,7 @@ struct UpdateMockProducerQpsReq {
 }
 
 struct UpdateMockProducerQpsResp {
+
 }
 
 service MinerIntegrate {
