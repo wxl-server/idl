@@ -175,8 +175,8 @@ message UpdateMockProducerQpsReq {
   optional int64 product_shop_info_qps = 2[(api.body)="product_shop_info_qps"];
   optional int64 product_logo_model_info_qps = 3[(api.body)="product_logo_model_info_qps"];
   optional int64 product_image_model_info_qps = 4[(api.body)="product_image_model_info_qps"];
-  optional int64 set_producer = 5[(api.body)="set_producer"];
-  optional int64 set_consumer = 6[(api.body)="set_consumer"];
+  optional bool set_producer = 5[(api.body)="set_producer"];
+  optional bool set_consumer = 6[(api.body)="set_consumer"];
 }
 
 message UpdateMockProducerQpsResp {
