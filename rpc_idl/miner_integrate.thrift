@@ -5,11 +5,9 @@ struct UpdateMockProducerQpsReq {
     2: optional i64 product_shop_info_qps
     3: optional i64 product_logo_model_info_qps
     4: optional i64 product_image_model_info_qps
-    5: optional i64 test
 }
 
 struct UpdateMockProducerQpsResp {
-
 }
 
 service MinerIntegrate {
