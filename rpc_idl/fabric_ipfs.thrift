@@ -1,7 +1,7 @@
 namespace go fabric_ipfs
 
 struct CreateEblDocxReq {
-    1: required CreateEblDocx ebl
+    1: required CreateEblDocx ebl1
 }
 
 struct CreateEblDocxResp {
